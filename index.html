@@ -122,6 +122,34 @@ header img, .hero h1, .hero p {
             margin-bottom: 15px;
         }
 
+        /* Hidden content by default */
+.more-content {
+    display: none;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* The toggle button styling */
+.read-more-btn {
+    color: var(--mid-green);
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.85rem;
+    margin-top: 15px;
+    display: inline-block;
+    border: none;
+    background: none;
+    padding: 0;
+}
+
+.read-more-btn:hover {
+    text-decoration: underline;
+}
+
+
         /* Contact Form */
         .contact-section { background: var(--soft-gray); padding: 80px 20px; }
 
@@ -289,17 +317,23 @@ header img, .hero h1, .hero p {
 <div class="container" id="remedies">
     <h2 style="text-align: center; color: var(--dark-green); margin-bottom: 40px;">Herbal Directory</h2>
     <div class="grid" id="remedyGrid">
-        <div class="card" data-tags="nutrition energy vitamins minerals miracle tree">
+<div class="card" data-tags="nutrition energy vitamins minerals miracle tree">
     <div class="card-content">
         <span class="tag">Nutritional Support</span>
         <h3>Moringa (The Miracle Tree)</h3>
-        <p>A nutrient-dense superfood containing 7x more Vitamin C than oranges and 15x more potassium than bananas. Excellent for natural energy and bone health.</p>
-        <small>Source: <strong>National Institutes of Health (NIH)</strong></small>
+        <p>A nutrient-dense superfood containing 7x more Vitamin C than oranges.</p>
+        
+        <div class="more-content">
+            <p>It also contains 15x more potassium than bananas and 9x more protein than yogurt. Historically used in Ayurvedic medicine to support over 300 conditions.</p>
+            <small>Source: <strong>National Institutes of Health (NIH)</strong></small>
+        </div>
+
+        <button class="read-more-btn" onclick="toggleReadMore(this)">Read More...</button>
         <br><br>
         <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5745501/" target="_blank" style="color: var(--mid-green); font-weight: bold; text-decoration: none;">View Research →</a>
     </div>
-            
 </div>
+
         <div class="card" data-tags="joints pain inflammation">
             <span class="tag">Joint Health</span>
             <h3>Turmeric (Curcumin)</h3>
@@ -386,6 +420,19 @@ header img, .hero h1, .hero p {
             cards[i].style.display = (tags.includes(input) || title.includes(input)) ? "" : "none";
         }
     }
+
+    function toggleReadMore(btn) {
+    const moreText = btn.previousElementSibling; // Finds the .more-content div
+    
+    if (moreText.style.display === "block") {
+        moreText.style.display = "none";
+        btn.innerHTML = "Read More...";
+    } else {
+        moreText.style.display = "block";
+        btn.innerHTML = "Read Less";
+    }
+}
+
 </script>
 <a href="https://wa.me/17587235872" class="whatsapp-float" target="_blank">
     <i class="fa-brands fa-whatsapp"></i>
