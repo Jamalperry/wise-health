@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wise & Healthy Living | Natural Wisdom</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
+    
     <style>
         :root {
             --dark-green: #1b4332;
@@ -14,6 +14,17 @@
             --cream: #fefae0;
             --white: #ffffff;
             --soft-gray: #f4f4f4;
+            --text-color: #333;
+        }
+
+        /* Dark Mode Colors */
+        body.dark-theme {
+            --white: #121212;
+            --soft-gray: #1a1a1a;
+            --dark-green: #081c15;
+            --mid-green: #40916c;
+            --cream: #1e1e1a;
+            --text-color: #e0e0e0;
         }
 
         html { scroll-behavior: smooth; }
@@ -21,31 +32,46 @@
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
             margin: 0;
-            color: #333;
+            color: var(--text-color);
             background-color: var(--white);
             line-height: 1.6;
+            transition: background 0.3s ease;
         }
 
-        /* Header */
-        @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-header img, .hero h1, .hero p {
-    animation: fadeInUp 1s ease-out forwards;
-}
-
-        .logo {
-            width: 100%;
-            height: auto;
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 2000;
+            background: var(--honey);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            width: 45px;
+            height: 45px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
         }
+
+        /* Header & Parallax */
+        header {
+            text-align: center;
+            padding: 120px 20px;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('https://images.unsplash.com/photo-1502330029746-60143f8045d5?auto=format&fit=crop&q=80&w=1000');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+        }
+
+        .logo { width: 250px; height: auto; filter: brightness(0) invert(1); }
 
         /* Navigation */
         nav {
@@ -55,7 +81,6 @@ header img, .hero h1, .hero p {
             top: 0;
             z-index: 1000;
             text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         nav a {
@@ -63,43 +88,19 @@ header img, .hero h1, .hero p {
             text-decoration: none;
             padding: 10px 20px;
             font-weight: 600;
-            text-transform: uppercase;
             font-size: 0.85rem;
             letter-spacing: 1px;
         }
 
-        nav a:hover { color: var(--honey); }
-
-        /* Sections */
-        .hero {
-            background-color: var(--cream);
-            padding: 80px 20px;
-            text-align: center;
-            border-bottom: 1px solid #e9edc9;
-        }
-
-        .search-container input {
-            padding: 15px 25px;
-            width: 90%;
-            max-width: 500px;
-            border: 2px solid var(--honey);
-            border-radius: 30px;
-            outline: none;
-            font-size: 1rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-
-        .container { max-width: 1100px; margin: auto; padding: 60px 20px; }
-        
+        /* Cards & Grid */
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
         }
 
-        /* Cards */
         .card {
-            background: white;
+            background: var(--white);
             border-radius: 15px;
             padding: 30px;
             transition: 0.3s;
@@ -107,9 +108,10 @@ header img, .hero h1, .hero p {
             border: 1px solid #eee;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
         }
 
-        .card:hover { transform: translateY(-10px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .card:hover { transform: translateY(-5px); }
 
         .tag {
             background: var(--honey);
@@ -118,396 +120,175 @@ header img, .hero h1, .hero p {
             border-radius: 20px;
             font-size: 0.75rem;
             font-weight: bold;
-            align-self: flex-start;
-            margin-bottom: 15px;
+            display: inline-block;
+            margin-bottom: 10px;
         }
 
-        .share-btn {
-    background: #f0f0f0;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
-    font-size: 0.8rem;
-    color: var(--mid-green);
-    cursor: pointer;
-    margin-top: 10px;
-    transition: 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.share-btn:hover {
-    background: var(--honey);
-    color: white;
-}
-
-/* Tooltip for when "Copied!" pops up */
-.copy-tooltip {
-    font-size: 0.7rem;
-    color: var(--mid-green);
-    margin-left: 8px;
-    font-weight: bold;
-    display: none;
-}
-
-
-        /* Hidden content by default */
-.more-content {
-    display: none;
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px solid #eee;
-    font-size: 0.9rem;
-    color: #555;
-}
-
-/* The toggle button styling */
-.read-more-btn {
-    color: var(--mid-green);
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 0.85rem;
-    margin-top: 15px;
-    display: inline-block;
-    border: none;
-    background: none;
-    padding: 0;
-}
-
-.read-more-btn:hover {
-    text-decoration: underline;
-}
-
-
-        /* Contact Form */
-        .contact-section { background: var(--soft-gray); padding: 80px 20px; }
-
-        .social-contact-grid {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    flex-wrap: wrap;
-    margin-top: 30px;
-}
-
-.social-item {
-    text-decoration: none;
-    color: var(--dark-green);
-    text-align: center;
-    transition: all 0.3s ease;
-}
-
-/* Individual Icon Hover Colors */
-.social-item:hover .fa-whatsapp { color: #25D366; }
-.social-item:hover .fa-envelope { color: var(--honey); }
-.social-item:hover .fa-instagram { color: #E1306C; }
-
-.social-item:hover {
-    transform: translateY(-5px);
-}
-
-.social-icon {
-    font-size: 3rem; /* Larger, cleaner icons */
-    display: block;
-    margin-bottom: 12px;
-}
-
-.social-label {
-    font-weight: 600;
-    font-size: 0.9rem;
-    display: block;
-}
-
-        .contact-form {
-            max-width: 600px;
-            margin: auto;
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-        }
-
-        .contact-form input, .contact-form textarea {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0 20px 0;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-sizing: border-box;
-        }
-
-        .submit-btn {
-            background: var(--dark-green);
-            color: white;
+        /* Read More & Share Styling */
+        .more-content { display: none; margin-top: 15px; border-top: 1px solid #ddd; padding-top: 10px; }
+        
+        .read-more-btn, .share-btn {
+            background: none;
             border: none;
-            padding: 15px 30px;
-            border-radius: 30px;
-            cursor: pointer;
+            color: var(--mid-green);
             font-weight: bold;
-            width: 100%;
-            transition: 0.3s;
+            cursor: pointer;
+            padding: 5px 0;
+            font-size: 0.9rem;
         }
 
-        .submit-btn:hover { background: var(--mid-green); }
+        .share-btn { 
+            background: var(--soft-gray); 
+            padding: 5px 12px; 
+            border-radius: 5px;
+            margin-left: 10px;
+        }
 
-        footer {
-            background: var(--dark-green);
-            color: white;
+        /* Social Contact Grid */
+        .social-contact-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 30px;
+        }
+
+        .social-item { text-decoration: none; color: var(--dark-green); text-align: center; }
+        .social-item:hover .fa-whatsapp { color: #25D366; }
+        .social-item:hover .fa-envelope { color: var(--honey); }
+
+        /* Floating WhatsApp */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
             text-align: center;
-            padding: 60px 20px 20px;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            animation: pulse 2s infinite;
         }
 
-        .disclaimer {
-            font-size: 0.8rem;
-            max-width: 800px;
-            margin: 0 auto 30px;
-            opacity: 0.8;
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 15px;
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
 
-        /* Floating WhatsApp Button */
-.whatsapp-float {
-    position: fixed;
-    width: 60px;
-    height: 60px;
-    bottom: 30px;
-    right: 30px;
-    background-color: #25d366;
-    color: #FFF;
-    border-radius: 50px;
-    text-align: center;
-    font-size: 30px;
-    box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
-    z-index: 10000; /* Ensures it stays on top of everything */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-.whatsapp-float:hover {
-    transform: scale(1.1);
-    background-color: #128c7e;
-    color: #FFF;
-}
-
-/* Optional: Pulse animation to grab attention */
-@keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-}
-
-.whatsapp-float {
-    animation: pulse 2s infinite;
-}
-
-        @keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-header img, .hero h1, .hero p {
-    animation: fadeInUp 1s ease-out forwards;
-}
-
-
+        .copy-tooltip { font-size: 0.7rem; display: none; color: var(--honey); }
     </style>
 </head>
-<body>
+<body class="light-theme">
+
+<button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">
+    <i class="fa-solid fa-moon"></i>
+</button>
 
 <header id="home">
     <img src="wiselogo.png" alt="Wise & Healthy Living" class="logo">
+    <h1>Natural Solutions for Modern Life</h1>
 </header>
 
 <nav>
     <a href="#home">Home</a>
     <a href="#remedies">Remedies</a>
-    <a href="#about">About</a>
     <a href="#contact">Contact</a>
 </nav>
 
-<section class="hero">
-    <h1>Natural Solutions for Modern Life</h1>
-    <p>Explore our library of science-backed herbal wisdom.</p>
-    <div class="search-container">
-        <input type="text" id="remedySearch" onkeyup="filterCards()" placeholder="Search by benefit (e.g. Anxiety, Digestion)...">
-    </div>
-</section>
-
-<div class="container" id="remedies">
-    <h2 style="text-align: center; color: var(--dark-green); margin-bottom: 40px;">Herbal Directory</h2>
+<div class="container" id="remedies" style="padding: 60px 20px; max-width: 1100px; margin: auto;">
     <div class="grid" id="remedyGrid">
-<div class="card" data-tags="nutrition energy vitamins minerals miracle tree">
-    <div class="card-content">
-        <span class="tag">Nutritional Support</span>
-        <h3>Moringa (The Miracle Tree)</h3>
-        <p>A nutrient-dense superfood containing 7x more Vitamin C than oranges.</p>
         
-        <div class="more-content">
-            <p>It also contains 15x more potassium than bananas and 9x more protein than yogurt. Historically used in Ayurvedic medicine to support over 300 conditions.</p>
-            <small>Source: <strong>National Institutes of Health (NIH)</strong></small>
+        <div class="card" data-tags="nutrition energy">
+            <div>
+                <span class="tag">Nutritional Support</span>
+                <h3>Moringa (Miracle Tree)</h3>
+                <p>A nutrient-dense superfood containing high Vitamin C and Potassium.</p>
+                <div class="more-content">
+                    <p>Contains 15x more potassium than bananas. Supports energy and bone health.</p>
+                    <small>Source: NIH</small>
+                </div>
+                <button class="read-more-btn" onclick="toggleReadMore(this)">Read More...</button>
+            </div>
+            <div>
+                <button class="share-btn" onclick="copyCardLink(this, 'Moringa')"><i class="fa-solid fa-share"></i></button>
+                <span class="copy-tooltip">Copied!</span>
+            </div>
         </div>
 
-        <button class="read-more-btn" onclick="toggleReadMore(this)">Read More...</button>
-        <div class="card" data-tags="...">
-    <div style="display: flex; align-items: center; gap: 10px;">
-        <button class="share-btn" onclick="copyCardLink(this, 'Moringa')">
-            <i class="fa-solid fa-share-nodes"></i> Share
-        </button>
-        <span class="copy-tooltip">Link Copied!</span>
-    </div>
-</div>
-
-        <br><br>
-        <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5745501/" target="_blank" style="color: var(--mid-green); font-weight: bold; text-decoration: none;">View Research →</a>
-    </div>
-</div>
-
-        <div class="card" data-tags="joints pain inflammation">
-            <span class="tag">Joint Health</span>
-            <h3>Turmeric (Curcumin)</h3>
-            <p>Reduces joint stiffness and supports systemic anti-inflammatory pathways.</p>
-            <small>Source: <strong>Arthritis Foundation</strong></small>
-            <a href="#" style="margin-top:20px; color: var(--mid-green); text-decoration: none; font-weight: bold;">Learn More →</a>
-        </div>
-
-        <div class="card" data-tags="stress anxiety sleep">
-            <span class="tag">Mental Well-being</span>
-            <h3>Ashwagandha</h3>
-            <p>An adaptogen that helps the body balance cortisol and improves stress resilience.</p>
-            <small>Source: <strong>Cleveland Clinic</strong></small>
-            <a href="#" style="margin-top:20px; color: var(--mid-green); text-decoration: none; font-weight: bold;">Learn More →</a>
-        </div>
-
-        <div class="card" data-tags="immunity cold flu">
-            <span class="tag">Immunity</span>
-            <h3>Elderberry</h3>
-            <p>Powerful antioxidants used to shorten the duration of seasonal respiratory issues.</p>
-            <small>Source: <strong>PubMed Central</strong></small>
-            <a href="#" style="margin-top:20px; color: var(--mid-green); text-decoration: none; font-weight: bold;">Learn More →</a>
+        <div class="card" data-tags="joints pain">
+            <div>
+                <span class="tag">Joint Health</span>
+                <h3>Turmeric (Curcumin)</h3>
+                <p>Powerful anti-inflammatory properties for joint relief.</p>
+                <div class="more-content">
+                    <p>Curcumin is the active ingredient that helps reduce systemic inflammation.</p>
+                    <small>Source: Arthritis Foundation</small>
+                </div>
+                <button class="read-more-btn" onclick="toggleReadMore(this)">Read More...</button>
+            </div>
+            <div>
+                <button class="share-btn" onclick="copyCardLink(this, 'Turmeric')"><i class="fa-solid fa-share"></i></button>
+                <span class="copy-tooltip">Copied!</span>
+            </div>
         </div>
 
     </div>
 </div>
 
-<section class="container" id="about" style="text-align: center;">
-    <div style="background: var(--cream); padding: 50px; border-radius: 20px;">
-        <h2 style="color: var(--honey);">Rooted in Wisdom</h2>
-        <p style="max-width: 700px; margin: auto;">At <strong>Wise & Healthy Living</strong>, we believe that nature holds the keys to vitality. We combine ancient botanical knowledge with modern clinical research to provide you with trustworthy health guidance.</p>
+<section class="contact-section" id="contact" style="background: var(--soft-gray); padding: 60px 20px; text-align: center;">
+    <h2>Connect With Us</h2>
+    <div class="social-contact-grid">
+        <a href="https://wa.me/1234567890" class="social-item" target="_blank">
+            <i class="fa-brands fa-whatsapp" style="font-size: 3rem;"></i><br>
+            <span>WhatsApp</span>
+        </a>
+        <a href="mailto:your-email@example.com?subject=Inquiry" class="social-item">
+            <i class="fa-solid fa-envelope" style="font-size: 3rem;"></i><br>
+            <span>Email Us</span>
+        </a>
     </div>
 </section>
 
-<section class="contact-section" id="contact">
-    <div class="contact-form" style="text-align: center;">
-        <h2 style="margin-top: 0; color: var(--dark-green);">Get in Touch</h2>
-        <p>Click below to chat with us directly.</p>
-
-        <div class="social-contact-grid">
-            <a href="https://wa.me/17587235872" class="social-item" target="_blank">
-                <i class="fa-brands fa-whatsapp social-icon"></i>
-                <span class="social-label">WhatsApp</span>
-            </a>
-
-            <a href="mailto:jamalsamuel23@yahoo.com" class="social-item">
-                <i class="fa-solid fa-envelope social-icon"></i>
-                <span class="social-label">Email Us</span>
-            </a>
-
-            <a href="https://instagram.com/yourprofile" class="social-item" target="_blank">
-                <i class="fa-brands fa-instagram social-icon"></i>
-                <span class="social-label">Instagram</span>
-            </a>
-            <a href="https://facebook.com/yourprofile" class="social-item" target="_blank">
-                <i class="fa-brands fa-facebook social-icon"></i>
-                <span class="social-label">Facebook</span>
-            </a>
-        </div>
-    </div>
-</section>
-
-
-
-<footer>
-    <div class="disclaimer">
-        <strong>MEDICAL DISCLAIMER:</strong> This site does not provide medical advice. 
-        <a href="disclaimer.html" style="color: #d4a373; text-decoration: underline;">Read Full Disclaimer</a>
-    </div>
-    <p>
-        <a href="privacy.html" style="color: #ccc; text-decoration: none; margin-right: 15px;">Privacy Policy</a>
-        <a href="#contact" style="color: #ccc; text-decoration: none;">Contact Us</a>
-    </p>
-    <p>&copy; 2026 Wise & Healthy Living | Empowering Natural Choices</p>
-</footer>
-
-<script>
-    function filterCards() {
-        const input = document.getElementById('remedySearch').value.toLowerCase();
-        const cards = document.getElementsByClassName('card');
-        for (let i = 0; i < cards.length; i++) {
-            const tags = cards[i].getAttribute('data-tags');
-            const title = cards[i].getElementsByTagName('h3')[0].innerText.toLowerCase();
-            cards[i].style.display = (tags.includes(input) || title.includes(input)) ? "" : "none";
-        }
-    }
-
-    function toggleReadMore(btn) {
-    const moreText = btn.previousElementSibling; // Finds the .more-content div
-    
-    if (moreText.style.display === "block") {
-        moreText.style.display = "none";
-        btn.innerHTML = "Read More...";
-    } else {
-        moreText.style.display = "block";
-        btn.innerHTML = "Read Less";
-    }
-}
-    // On page load, check if there is a search term in the URL
-window.onload = function() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const searchQuery = urlParams.get('search');
-    
-    if (searchQuery) {
-        document.getElementById('remedySearch').value = searchQuery;
-        filterCards(); // Runs your existing search function
-    }
-}
-function copyCardLink(btn, remedyName) {
-    // This creates a link to your site with a search parameter for that remedy
-    const siteUrl = window.location.origin + window.location.pathname;
-    const shareUrl = `${siteUrl}?search=${encodeURIComponent(remedyName)}`;
-
-    navigator.clipboard.writeText(shareUrl).then(() => {
-        // Show the "Copied!" tooltip
-        const tooltip = btn.nextElementSibling;
-        tooltip.style.display = "inline";
-        
-        // Change button icon briefly
-        const icon = btn.querySelector('i');
-        icon.className = "fa-solid fa-check";
-
-        // Reset after 2 seconds
-        setTimeout(() => {
-            tooltip.style.display = "none";
-            icon.className = "fa-solid fa-share-nodes";
-        }, 2000);
-    });
-}
-
-
-</script>
-<a href="https://wa.me/17587235872" class="whatsapp-float" target="_blank">
+<a href="https://wa.me/1234567890" class="whatsapp-float" target="_blank">
     <i class="fa-brands fa-whatsapp"></i>
 </a>
 
+<script>
+    function toggleTheme() {
+        const body = document.body;
+        const icon = document.querySelector('#themeBtn i');
+        body.classList.toggle('dark-theme');
+        icon.className = body.classList.contains('dark-theme') ? "fa-solid fa-sun" : "fa-solid fa-moon";
+    }
+
+    function toggleReadMore(btn) {
+        const moreText = btn.previousElementSibling;
+        if (moreText.style.display === "block") {
+            moreText.style.display = "none";
+            btn.innerText = "Read More...";
+        } else {
+            moreText.style.display = "block";
+            btn.innerText = "Read Less";
+        }
+    }
+
+    function copyCardLink(btn, name) {
+        const url = window.location.origin + window.location.pathname + "?search=" + name;
+        navigator.clipboard.writeText(url).then(() => {
+            const tip = btn.nextElementSibling;
+            tip.style.display = "inline";
+            setTimeout(() => tip.style.display = "none", 2000);
+        });
+    }
+</script>
+
 </body>
-  </html>
+</html>
