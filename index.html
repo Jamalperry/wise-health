@@ -122,6 +122,36 @@ header img, .hero h1, .hero p {
             margin-bottom: 15px;
         }
 
+        .share-btn {
+    background: #f0f0f0;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    color: var(--mid-green);
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.share-btn:hover {
+    background: var(--honey);
+    color: white;
+}
+
+/* Tooltip for when "Copied!" pops up */
+.copy-tooltip {
+    font-size: 0.7rem;
+    color: var(--mid-green);
+    margin-left: 8px;
+    font-weight: bold;
+    display: none;
+}
+
+
         /* Hidden content by default */
 .more-content {
     display: none;
@@ -329,6 +359,15 @@ header img, .hero h1, .hero p {
         </div>
 
         <button class="read-more-btn" onclick="toggleReadMore(this)">Read More...</button>
+        <div class="card" data-tags="...">
+    <div style="display: flex; align-items: center; gap: 10px;">
+        <button class="share-btn" onclick="copyCardLink(this, 'Moringa')">
+            <i class="fa-solid fa-share-nodes"></i> Share
+        </button>
+        <span class="copy-tooltip">Link Copied!</span>
+    </div>
+</div>
+
         <br><br>
         <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5745501/" target="_blank" style="color: var(--mid-green); font-weight: bold; text-decoration: none;">View Research →</a>
     </div>
@@ -432,6 +471,38 @@ header img, .hero h1, .hero p {
         btn.innerHTML = "Read Less";
     }
 }
+    // On page load, check if there is a search term in the URL
+window.onload = function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchQuery = urlParams.get('search');
+    
+    if (searchQuery) {
+        document.getElementById('remedySearch').value = searchQuery;
+        filterCards(); // Runs your existing search function
+    }
+}
+function copyCardLink(btn, remedyName) {
+    // This creates a link to your site with a search parameter for that remedy
+    const siteUrl = window.location.origin + window.location.pathname;
+    const shareUrl = `${siteUrl}?search=${encodeURIComponent(remedyName)}`;
+
+    navigator.clipboard.writeText(shareUrl).then(() => {
+        // Show the "Copied!" tooltip
+        const tooltip = btn.nextElementSibling;
+        tooltip.style.display = "inline";
+        
+        // Change button icon briefly
+        const icon = btn.querySelector('i');
+        icon.className = "fa-solid fa-check";
+
+        // Reset after 2 seconds
+        setTimeout(() => {
+            tooltip.style.display = "none";
+            icon.className = "fa-solid fa-share-nodes";
+        }, 2000);
+    });
+}
+
 
 </script>
 <a href="https://wa.me/17587235872" class="whatsapp-float" target="_blank">
