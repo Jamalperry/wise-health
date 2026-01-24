@@ -201,6 +201,45 @@
             border: 1px solid rgba(255,255,255,0.2);
             padding: 15px;
         }
+
+        /* Floating WhatsApp Button */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+    z-index: 10000; /* Ensures it stays on top of everything */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    background-color: #128c7e;
+    color: #FFF;
+}
+
+/* Optional: Pulse animation to grab attention */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+.whatsapp-float {
+    animation: pulse 2s infinite;
+}
+
     </style>
 </head>
 <body>
@@ -278,12 +317,12 @@
         <p>Click below to chat with us directly.</p>
 
         <div class="social-contact-grid">
-            <a href="https://wa.me/1234567890" class="social-item" target="_blank">
+            <a href="https://wa.me/17587235872" class="social-item" target="_blank">
                 <i class="fa-brands fa-whatsapp social-icon"></i>
                 <span class="social-label">WhatsApp</span>
             </a>
 
-            <a href="mailto:your-email@example.com" class="social-item">
+            <a href="mailto:jamalsamuel23@yahoo.com" class="social-item">
                 <i class="fa-solid fa-envelope social-icon"></i>
                 <span class="social-label">Email Us</span>
             </a>
@@ -325,6 +364,9 @@
         }
     }
 </script>
+<a href="https://wa.me/17587235872" class="whatsapp-float" target="_blank">
+    <i class="fa-brands fa-whatsapp"></i>
+</a>
 
 </body>
   </html>
