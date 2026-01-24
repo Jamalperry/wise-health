@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wise & Healthy Living | Natural Wisdom</title>
+    <style>
+        :root {
+            --dark-green: #1b4332;
+            --mid-green: #2d6a4f;
+            --honey: #d4a373;
+            --cream: #fefae0;
+            --white: #ffffff;
+            --soft-gray: #f4f4f4;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            color: #333;
+            background-color: var(--white);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), 
+                        url('https://images.unsplash.com/photo-1502330029746-60143f8045d5?auto=format&fit=crop&q=80&w=1000');
+            background-size: cover;
+        }
+
+        .logo {
+            max-width: 250px;
+            height: auto;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+        }
+
+        /* Navigation */
+        nav {
+            background: var(--dark-green);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover { color: var(--honey); }
+
+        /* Sections */
+        .hero {
+            background-color: var(--cream);
+            padding: 80px 20px;
+            text-align: center;
+            border-bottom: 1px solid #e9edc9;
+        }
+
+        .search-container input {
+            padding: 15px 25px;
+            width: 90%;
+            max-width: 500px;
+            border: 2px solid var(--honey);
+            border-radius: 30px;
+            outline: none;
+            font-size: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .container { max-width: 1100px; margin: auto; padding: 60px 20px; }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover { transform: translateY(-10px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+
+        .tag {
+            background: var(--honey);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            align-self: flex-start;
+            margin-bottom: 15px;
+        }
+
+        /* Contact Form */
+        .contact-section { background: var(--soft-gray); padding: 80px 20px; }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0 20px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        .submit-btn {
+            background: var(--dark-green);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover { background: var(--mid-green); }
+
+        footer {
+            background: var(--dark-green);
+            color: white;
+            text-align: center;
+            padding: 60px 20px 20px;
+        }
+
+        .disclaimer {
+            font-size: 0.8rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.8;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<header id="home">
+    <img src="wiselogo.png" alt="Wise & Healthy Living" class="logo">
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#remedies">Remedies</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+</nav>
+
+<section class="hero">
+    <h1>Natural Solutions for Modern Life</h1>
+    <p>Explore our library of science-backed herbal wisdom.</p>
+    <div class="search-container">
+        <input type="text" id="remedySearch" onkeyup="filterCards()" placeholder="Search by benefit (e.g. Anxiety, Digestion)...">
+    </div>
+</section>
+
+<div class="container" id="remedies">
+    <h2 style="text-align: center; color: var(--dark-green); margin-bottom: 40px;">Herbal Directory</h2>
+    <div class="grid" id="remedyGrid">
+        
+        <div class="card" data-tags="joints pain inflammation">
+            <span class="tag">Joint Health</span>
+            <h3>Turmeric (Curcumin)</h3>
+            <p>Reduces joint stiffness and supports systemic anti-inflammatory pathways.</p>
+            <small>Source: <strong>Arthritis Foundation</strong></small>
+            <a href="#" style="margin-top:20px; color: var(--mid-green); text-decoration: none; font-weight: bold;">Learn More →</a>
+        </div>
+
+        <div class="card" data-tags="stress anxiety sleep">
+            <span class="tag">Mental Well-being</span>
+            <h3>Ashwagandha</h3>
+            <p>An adaptogen that helps the body balance cortisol and improves stress resilience.</p>
+            <small>Source: <strong>Cleveland Clinic</strong></small>
+            <a href="#" style="margin-top:20px; color: var(--mid-green); text-decoration: none; font-weight: bold;">Learn More →</a>
+        </div>
+
+        <div class="card" data-tags="immunity cold flu">
+            <span class="tag">Immunity</span>
+            <h3>Elderberry</h3>
+            <p>Powerful antioxidants used to shorten the duration of seasonal respiratory issues.</p>
+            <small>Source: <strong>PubMed Central</strong></small>
+            <a href="#" style="margin-top:20px; color: var(--mid-green); text-decoration: none; font-weight: bold;">Learn More →</a>
+        </div>
+
+    </div>
+</div>
+
+<section class="container" id="about" style="text-align: center;">
+    <div style="background: var(--cream); padding: 50px; border-radius: 20px;">
+        <h2 style="color: var(--honey);">Rooted in Wisdom</h2>
+        <p style="max-width: 700px; margin: auto;">At <strong>Wise & Healthy Living</strong>, we believe that nature holds the keys to vitality. We combine ancient botanical knowledge with modern clinical research to provide you with trustworthy health guidance.</p>
+    </div>
+</section>
+
+<section class="contact-section" id="contact">
+    <div class="contact-form">
+        <h2 style="text-align: center; margin-top: 0;">Connect With Us</h2>
+        <p style="text-align: center; font-size: 0.9rem;">Have a question about a remedy? Send us a message.</p>
+        <form action="https://formspree.io/f/your-id" method="POST">   
+            <label>Name</label>
+            <input name="" type="text" placeholder="Your Name" required>
+            <label>Email</label>
+            <input name="" type="email" placeholder="Email Address" required>
+            <label>Message</label>
+            <textarea rows="5" placeholder="How can we help you?"></textarea>
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+    </div>
+</section>
+
+<footer>
+    <div class="disclaimer">
+        <strong>MEDICAL DISCLAIMER:</strong> This site does not provide medical advice. Herbal remedies are intended to support general wellness and should be discussed with a doctor before use.
+    </div>
+    <p>&copy; 2026 Wise & Healthy Living | Empowering Natural Choices</p>
+</footer>
+
+<script>
+    function filterCards() {
+        const input = document.getElementById('remedySearch').value.toLowerCase();
+        const cards = document.getElementsByClassName('card');
+        for (let i = 0; i < cards.length; i++) {
+            const tags = cards[i].getAttribute('data-tags');
+            const title = cards[i].getElementsByTagName('h3')[0].innerText.toLowerCase();
+            cards[i].style.display = (tags.includes(input) || title.includes(input)) ? "" : "none";
+        }
+    }
+</script>
+
+</body>
+  </html>
