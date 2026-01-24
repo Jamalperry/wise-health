@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wise & Healthy Living | Natural Wisdom</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <style>
         :root {
             --dark-green: #1b4332;
@@ -119,7 +121,7 @@
         .social-contact-grid {
     display: flex;
     justify-content: center;
-    gap: 30px;
+    gap: 40px;
     flex-wrap: wrap;
     margin-top: 30px;
 }
@@ -128,24 +130,28 @@
     text-decoration: none;
     color: var(--dark-green);
     text-align: center;
-    transition: 0.3s;
-    width: 100px;
+    transition: all 0.3s ease;
 }
 
+/* Individual Icon Hover Colors */
+.social-item:hover .fa-whatsapp { color: #25D366; }
+.social-item:hover .fa-envelope { color: var(--honey); }
+.social-item:hover .fa-instagram { color: #E1306C; }
+
 .social-item:hover {
-    color: var(--honey);
     transform: translateY(-5px);
 }
 
 .social-icon {
-    font-size: 2.5rem;
+    font-size: 3rem; /* Larger, cleaner icons */
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .social-label {
-    font-weight: bold;
+    font-weight: 600;
     font-size: 0.9rem;
+    display: block;
 }
 
         .contact-form {
@@ -269,27 +275,31 @@
 <section class="contact-section" id="contact">
     <div class="contact-form" style="text-align: center;">
         <h2 style="margin-top: 0; color: var(--dark-green);">Get in Touch</h2>
-        <p>Choose your preferred way to connect with our herbal experts.</p>
+        <p>Click below to chat with us directly.</p>
 
         <div class="social-contact-grid">
-            <a href="https://wa.me/1234567890?text=Hello!%20I%20have%20a%20question%20about%20a%20remedy." 
-               class="social-item" target="_blank">
-                <span class="social-icon">💬</span>
+            <a href="https://wa.me/1234567890" class="social-item" target="_blank">
+                <i class="fa-brands fa-whatsapp social-icon"></i>
                 <span class="social-label">WhatsApp</span>
             </a>
 
-            <a href="mailto:your-email@example.com?subject=Wise%20Inquiry" class="social-item">
-                <span class="social-icon">✉️</span>
+            <a href="mailto:your-email@example.com" class="social-item">
+                <i class="fa-solid fa-envelope social-icon"></i>
                 <span class="social-label">Email Us</span>
             </a>
 
             <a href="https://instagram.com/yourprofile" class="social-item" target="_blank">
-                <span class="social-icon">📸</span>
+                <i class="fa-brands fa-instagram social-icon"></i>
                 <span class="social-label">Instagram</span>
+            </a>
+            <a href="https://facebook.com/yourprofile" class="social-item" target="_blank">
+                <i class="fa-brands fa-facebook social-icon"></i>
+                <span class="social-label">Facebook</span>
             </a>
         </div>
     </div>
 </section>
+
 
 
 <footer>
