@@ -238,16 +238,21 @@
     <div class="contact-form">
         <h2 style="text-align: center; margin-top: 0;">Connect With Us</h2>
         <p style="text-align: center; font-size: 0.9rem;">Have a question about a remedy? Send us a message.</p>
-        <form action="https://formspree.io/f/your-id" method="POST">   
-            <input type="hidden" name="_next" value="https://Jamalperry.github.io/wise-health/success.html">
-            <label>Name</label>
-            <input name="" type="text" placeholder="Your Name" required>
-            <label>Email</label>
-            <input name="" type="email" placeholder="Email Address" required>
-            <label>Message</label>
-            <textarea rows="5" placeholder="How can we help you?"></textarea>
-            <button type="submit" class="submit-btn">Send Message</button>
-        </form>
+        <form action="mailto:your-email@example.com" method="GET" enctype="text/plain">   
+    <input type="hidden" name="subject" value="New Inquiry from Wise & Healthy Living">
+
+    <label>Name</label>
+    <input name="name" type="text" placeholder="Your Name" required>
+    
+    <label>Email</label>
+    <input name="email" type="email" placeholder="Email Address" required>
+    
+    <label>Message</label>
+    <textarea name="body" rows="5" placeholder="How can we help you?"></textarea>
+    
+    <button type="submit" class="submit-btn">Open My Email App</button>
+</form>
+
     </div>
 </section>
 
