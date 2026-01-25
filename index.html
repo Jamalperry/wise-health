@@ -119,21 +119,35 @@
             color: var(--text-color);
         }
 
-        .surprise-btn {
-            background: var(--honey);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-top: 15px;
-            transition: 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .surprise-btn:hover { background: var(--mid-green); transform: scale(1.05); }
+        .search-btn {
+    background: var(--dark-green);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 15px;
+    transition: 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.search-btn:hover {
+    background: var(--mid-green);
+    transform: scale(1.05);
+}
+
+/* Ensure buttons look good on small mobile screens */
+@media (max-width: 480px) {
+    .search-btn, .surprise-btn {
+        width: 90%;
+        justify-content: center;
+    }
+}
+
 
         /* Cards & Grid */
         .container { max-width: 1100px; margin: auto; padding: 60px 20px; }
@@ -239,9 +253,15 @@
     <div class="search-container">
         <input type="text" id="remedySearch" onkeyup="filterCards()" placeholder="Search by benefit (Anxiety, Energy, Immunity)...">
         <br>
-        <button class="surprise-btn" onclick="surpriseMe()">
-            <i class="fa-solid fa-wand-magic-sparkles"></i> Surprise Me!
-        </button>
+        <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
+            <button class="search-btn" onclick="filterCards()">
+                <i class="fa-solid fa-magnifying-glass"></i> Search
+            </button>
+            
+            <button class="surprise-btn" onclick="surpriseMe()">
+                <i class="fa-solid fa-wand-magic-sparkles"></i> Surprise Me!
+            </button>
+        </div>
     </div>
 </section>
 
