@@ -422,8 +422,15 @@
         <strong>MEDICAL DISCLAIMER:</strong> This site does not provide medical advice. 
         <a href="disclaimer.html" style="color: #d4a373; text-decoration: underline;">Read Full Disclaimer</a>
     </div>
+    
+    <p style="font-size: 0.85rem; opacity: 0.7; margin-bottom: 10px;">
+        <i class="fa-regular fa-calendar-check"></i> 
+        Research Last Verified: <span id="lastUpdated"></span>
+    </p>
+
     <p>&copy; 2026 Wise & Healthy Living | Empowering Natural Choices</p>
 </footer>
+
 
 <a href="https://wa.me/17587235872" class="whatsapp-float" target="_blank">
     <i class="fa-brands fa-whatsapp"></i>
@@ -511,6 +518,19 @@ function scrollToTop() {
         behavior: 'smooth'
     });
 }
+
+    function setLastUpdated() {
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+    const d = new Date();
+    const dateString = monthNames[d.getMonth()] + " " + d.getFullYear();
+    document.getElementById("lastUpdated").innerText = dateString;
+}
+
+// Run this when the page loads
+window.addEventListener('DOMContentLoaded', setLastUpdated);
+
 
 </script>
 
