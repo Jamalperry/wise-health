@@ -135,6 +135,38 @@
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
+        .search-box-wrapper {
+    position: relative;
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.search-container input {
+    padding: 15px 45px 15px 25px; /* Extra right padding (45px) to make room for the X */
+    width: 100%;
+    border: 2px solid var(--honey);
+    border-radius: 30px;
+    outline: none;
+    box-sizing: border-box; /* Ensures padding doesn't break the width */
+}
+
+.clear-search {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #999;
+    display: none; /* Hidden by default until user types */
+    transition: color 0.2s;
+}
+
+.clear-search:hover {
+    color: var(--mid-green);
+}
+
+
 .search-btn:hover {
     background: var(--mid-green);
     transform: scale(1.05);
@@ -273,7 +305,11 @@
             <button class="search-btn" onclick="filterCards()">
                 <i class="fa-solid fa-magnifying-glass"></i> Search
             </button>
-            
+            <div class="search-box-wrapper">
+    <input type="text" id="remedySearch" onkeyup="handleSearchInput()" placeholder="Search by benefit...">
+    <i class="fa-solid fa-circle-xmark clear-search" id="clearSearchBtn" onclick="clearSearch()"></i>
+</div>
+
             <button class="surprise-btn" onclick="surpriseMe()">
                 <i class="fa-solid fa-wand-magic-sparkles"></i> Surprise Me!
             </button>
@@ -546,6 +582,35 @@
         const btn = document.getElementById("backToTop");
         btn.style.display = (window.scrollY > 500) ? "flex" : "none";
     };
+
+    function handleSearchInput() {
+    const input = document.getElementById('remedySearch');
+    const clearBtn = document.getElementById('clearSearchBtn');
+    
+    // Show X if there is text, hide if empty
+    clearBtn.style.display = input.value.length > 0 ? "block" : "none";
+    
+    // Run your existing filter function
+    filterCards();
+}
+
+function clearSearch() {
+    const input = document.getElementById('remedySearch');
+    const clearBtn = document.getElementById('clearSearchBtn');
+    
+    // 1. Wipe the text
+    input.value = '';
+    
+    // 2. Hide the X button
+    clearBtn.style.display = "none";
+    
+    // 3. Reset the card grid to show everything
+    filterCards();
+    
+    // 4. Put the cursor back in the box for convenience
+    input.focus();
+}
+
 </script>
 
 </body>
