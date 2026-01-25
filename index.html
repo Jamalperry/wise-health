@@ -141,6 +141,16 @@
             display: inline-block;
         }
 
+        .read-time {
+    font-size: 0.75rem;
+    color: var(--mid-green);
+    opacity: 0.8;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 5px;
+}
+
         /* Featured Card Styling */
 .featured-card {
     border: 3px solid var(--honey) !important;
@@ -298,14 +308,10 @@
 </section>
 
 <div class="container" id="remedies">
-    <h2 style="text-align: center; color: var(--dark-green); margin-bottom: 40px;">Herbal Directory</h2>
-
+    <h2 style="text-align: center; color: var(--dark-green); margin-bottom: 30px;">Herbal Directory</h2>
     <div class="container" id="remedies">
-    <h2 style="text-align: center; color: var(--dark-green); margin-bottom: 10px;">Herbal Directory</h2>
-    
     <div id="featuredSection" style="margin-bottom: 40px;">
         </div>
-
     <div class="grid" id="remedyGrid">
         </div>
 </div>
@@ -314,6 +320,9 @@
         
         <div class="card" data-tags="nutrition energy vitamins minerals miracle tree">
             <div>
+        <div class="read-time">
+            <i class="fa-regular fa-clock"></i> <span class="minutes"></span> min read
+        </div>
                 <span class="tag">Nutritional Support</span>
                 <h3>Moringa (The Miracle Tree)</h3>
                 <p>A nutrient-dense superfood containing 7x more Vitamin C than oranges.</p>
@@ -343,6 +352,9 @@
 
         <div class="card" data-tags="joints pain inflammation">
             <div>
+                <div class="read-time">
+            <i class="fa-regular fa-clock"></i> <span class="minutes"></span> min read
+                </div>
                 <span class="tag">Joint Health</span>
                 <h3>Turmeric (Curcumin)</h3>
                 <p>Reduces joint stiffness and supports anti-inflammatory pathways.</p>
@@ -371,6 +383,9 @@
 
         <div class="card" data-tags="stress anxiety sleep">
             <div>
+                <div class="read-time">
+            <i class="fa-regular fa-clock"></i> <span class="minutes"></span> min read
+                </div>
                 <span class="tag">Mental Well-being</span>
                 <h3>Ashwagandha</h3>
                 <p>An adaptogen that helps the body balance cortisol and stress.</p>
@@ -399,6 +414,9 @@
 
         <div class="card" data-tags="immunity cold flu">
             <div>
+                <div class="read-time">
+            <i class="fa-regular fa-clock"></i> <span class="minutes"></span> min read
+                </div>
                 <span class="tag">Immunity</span>
                 <h3>Elderberry</h3>
                 <p>Powerful antioxidants used to shorten seasonal respiratory issues.</p>
@@ -597,6 +615,32 @@ window.addEventListener('DOMContentLoaded', () => {
     pickRemedyOfTheDay();
     setLastUpdated(); // from our previous step
 });
+
+    function calculateReadingTime() {
+    const cards = document.querySelectorAll('.card');
+    
+    cards.forEach(card => {
+        // Get all text inside the card (including the hidden "Read More" part)
+        const text = card.innerText;
+        const wpm = 200; // Average reading speed
+        const words = text.trim().split(/\s+/).length;
+        const time = Math.ceil(words / wpm);
+        
+        // Find the minutes span in this specific card and update it
+        const timeSpan = card.querySelector('.minutes');
+        if (timeSpan) {
+            timeSpan.innerText = time;
+        }
+    });
+}
+
+// Add this to your existing DOMContentLoaded listener
+window.addEventListener('DOMContentLoaded', () => {
+    calculateReadingTime();
+    pickRemedyOfTheDay();
+    setLastUpdated();
+});
+
 
 </script>
 
