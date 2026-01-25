@@ -141,6 +141,31 @@
             display: inline-block;
         }
 
+        /* Featured Card Styling */
+.featured-card {
+    border: 3px solid var(--honey) !important;
+    transform: scale(1.02);
+    box-shadow: 0 10px 30px rgba(212, 163, 115, 0.2) !important;
+    position: relative;
+}
+
+.featured-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--honey);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    z-index: 10;
+}
+
+
         /* Read More / Share styling */
         .more-content { display: none; margin-top: 15px; border-top: 1px solid #ddd; padding-top: 10px; font-size: 0.9rem; }
         .read-more-btn { color: var(--mid-green); cursor: pointer; font-weight: bold; background: none; border: none; padding: 0; margin-top: 10px; }
@@ -273,6 +298,17 @@
 
 <div class="container" id="remedies">
     <h2 style="text-align: center; color: var(--dark-green); margin-bottom: 40px;">Herbal Directory</h2>
+
+    <div class="container" id="remedies">
+    <h2 style="text-align: center; color: var(--dark-green); margin-bottom: 10px;">Herbal Directory</h2>
+    
+    <div id="featuredSection" style="margin-bottom: 40px;">
+        </div>
+
+    <div class="grid" id="remedyGrid">
+        </div>
+</div>
+
     <div class="grid" id="remedyGrid">
         
         <div class="card" data-tags="nutrition energy vitamins minerals miracle tree">
@@ -531,6 +567,35 @@ function scrollToTop() {
 // Run this when the page loads
 window.addEventListener('DOMContentLoaded', setLastUpdated);
 
+function pickRemedyOfTheDay() {
+    const cards = document.querySelectorAll('#remedyGrid .card');
+    if (cards.length === 0) return;
+
+    // Uses the current date to pick an index (so it only changes once per day)
+    const today = new Date();
+    const index = (today.getDate() + today.getMonth()) % cards.length;
+    
+    const featuredCard = cards[index];
+    const featuredSection = document.getElementById('featuredSection');
+
+    // Add a badge to the card
+    const badge = document.createElement('div');
+    badge.className = 'featured-badge';
+    badge.innerHTML = '<i class="fa-solid fa-star"></i> Remedy of the Day';
+    
+    // Clone the card into the featured section
+    const clone = featuredCard.cloneNode(true);
+    clone.classList.add('featured-card');
+    clone.appendChild(badge);
+    
+    featuredSection.appendChild(clone);
+}
+
+// Update your window.onload to include this
+window.addEventListener('DOMContentLoaded', () => {
+    pickRemedyOfTheDay();
+    setLastUpdated(); // from our previous step
+});
 
 </script>
 
