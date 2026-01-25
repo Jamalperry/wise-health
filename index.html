@@ -157,6 +157,60 @@
         .social-item:hover .fa-envelope { color: var(--honey); }
         .social-icon { font-size: 3rem; display: block; margin-bottom: 10px; }
 
+        /* Print Button Styling */
+.print-btn {
+    background: none;
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    border-radius: 5px;
+    color: #666;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: 0.3s;
+}
+
+.print-btn:hover {
+    background: #eee;
+}
+
+/* Hide everything else when printing */
+@media print {
+    nav, header, .hero, .theme-toggle, .whatsapp-float, #backToTop, 
+    .share-btn, .print-btn, .contact-section, footer, .read-more-btn {
+        display: none !important;
+    }
+    body { background: white; color: black; }
+    .card { border: none; box-shadow: none; width: 100%; }
+    .more-content { display: block !important; } /* Always show full info on print */
+}
+
+        /* Back to Top Button */
+#backToTop {
+    position: fixed;
+    bottom: 100px; /* Positioned above the WhatsApp button */
+    right: 30px;
+    background-color: var(--dark-green);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: none; /* Hidden by default */
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    z-index: 9999;
+    transition: all 0.3s ease;
+}
+
+#backToTop:hover {
+    background-color: var(--honey);
+    transform: translateY(-5px);
+}
+
+
+
         /* Floating Button */
         .whatsapp-float {
             position: fixed;
@@ -192,6 +246,9 @@
 
 <button class="theme-toggle" id="themeBtn" onclick="toggleTheme()">
     <i class="fa-solid fa-moon"></i>
+</button>
+<button id="backToTop" onclick="scrollToTop()">
+    <i class="fa-solid fa-arrow-up"></i>
 </button>
 
 <header id="home">
@@ -231,6 +288,18 @@
             </div>
             <div style="margin-top:20px; display: flex; align-items: center;">
                 <button class="share-btn" onclick="copyCardLink(this, 'Moringa')"><i class="fa-solid fa-share-nodes"></i> Share</button>
+                <div style="margin-top:20px; display: flex; align-items: center; gap: 10px;">
+    <button class="share-btn" onclick="copyCardLink(this, 'Moringa')">
+        <i class="fa-solid fa-share-nodes"></i> Share
+    </button>
+    
+    <button class="print-btn" onclick="window.print()">
+        <i class="fa-solid fa-print"></i> Print
+    </button>
+    
+    <span class="copy-tooltip">Copied!</span>
+</div>
+
                 <span class="copy-tooltip">Copied!</span>
             </div>
         </div>
@@ -248,6 +317,18 @@
             </div>
             <div style="margin-top:20px; display: flex; align-items: center;">
                 <button class="share-btn" onclick="copyCardLink(this, 'Turmeric')"><i class="fa-solid fa-share-nodes"></i> Share</button>
+                <div style="margin-top:20px; display: flex; align-items: center; gap: 10px;">
+    <button class="share-btn" onclick="copyCardLink(this, 'Moringa')">
+        <i class="fa-solid fa-share-nodes"></i> Share
+    </button>
+    
+    <button class="print-btn" onclick="window.print()">
+        <i class="fa-solid fa-print"></i> Print
+    </button>
+    
+    <span class="copy-tooltip">Copied!</span>
+</div>
+
                 <span class="copy-tooltip">Copied!</span>
             </div>
         </div>
@@ -265,6 +346,18 @@
             </div>
             <div style="margin-top:20px; display: flex; align-items: center;">
                 <button class="share-btn" onclick="copyCardLink(this, 'Ashwagandha')"><i class="fa-solid fa-share-nodes"></i> Share</button>
+                <div style="margin-top:20px; display: flex; align-items: center; gap: 10px;">
+    <button class="share-btn" onclick="copyCardLink(this, 'Moringa')">
+        <i class="fa-solid fa-share-nodes"></i> Share
+    </button>
+    
+    <button class="print-btn" onclick="window.print()">
+        <i class="fa-solid fa-print"></i> Print
+    </button>
+    
+    <span class="copy-tooltip">Copied!</span>
+</div>
+
                 <span class="copy-tooltip">Copied!</span>
             </div>
         </div>
@@ -282,6 +375,18 @@
             </div>
             <div style="margin-top:20px; display: flex; align-items: center;">
                 <button class="share-btn" onclick="copyCardLink(this, 'Elderberry')"><i class="fa-solid fa-share-nodes"></i> Share</button>
+                <div style="margin-top:20px; display: flex; align-items: center; gap: 10px;">
+    <button class="share-btn" onclick="copyCardLink(this, 'Moringa')">
+        <i class="fa-solid fa-share-nodes"></i> Share
+    </button>
+    
+    <button class="print-btn" onclick="window.print()">
+        <i class="fa-solid fa-print"></i> Print
+    </button>
+    
+    <span class="copy-tooltip">Copied!</span>
+</div>
+
                 <span class="copy-tooltip">Copied!</span>
             </div>
         </div>
@@ -385,6 +490,31 @@
             filterCards();
         }
     }
+
+    // Get the button
+const topBtn = document.getElementById("backToTop");
+
+// When the user scrolls down 400px from the top, show the button
+window.onscroll = function() {
+    scrollFunction();
+};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 400 || document.documentElement.scrollTop > 400) {
+        topBtn.style.display = "flex";
+    } else {
+        topBtn.style.display = "none";
+    }
+}
+
+// When the user clicks, scroll to the top
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
 </script>
 
 </body>
