@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wisdom Blog | Wise & Healthy Living</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --dark-green: #1b4332;
+            --mid-green: #2d6a4f;
+            --honey: #d4a373;
+            --cream: #fefae0;
+            --white: #ffffff;
+            --soft-gray: #f4f4f4;
+            --text-color: #333;
+        }
+
+        body.dark-theme {
+            --white: #121212;
+            --soft-gray: #1a1a1a;
+            --dark-green: #081c15;
+            --mid-green: #40916c;
+            --cream: #1e1e1a;
+            --text-color: #e0e0e0;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            color: var(--text-color);
+            background-color: var(--white);
+            line-height: 1.6;
+            transition: background 0.3s ease;
+        }
+
+        /* Progress Bar & Loader (Same as Index) */
+        .progress-container { position: fixed; top: 0; left: 0; width: 100%; height: 5px; background: transparent; z-index: 3001; }
+        .progress-bar { height: 5px; background: var(--honey); width: 0%; transition: width 0.1s ease-out; }
+        #loader-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.8); display: none; justify-content: center; align-items: center; z-index: 9999; }
+        .spinner { width: 50px; height: 50px; border: 5px solid var(--soft-gray); border-top: 5px solid var(--honey); border-radius: 50%; animation: spin 0.8s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* Navigation */
+        nav { background: var(--dark-green); padding: 15px 0; position: sticky; top: 0; z-index: 1000; text-align: center; }
+        nav a { color: white; text-decoration: none; padding: 10px 20px; font-weight: 600; font-size: 0.85rem; letter-spacing: 1px; }
+        nav a:hover { color: var(--honey); }
+
+        /* Blog Hero */
+        .blog-hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1471193945509-9ad0617afabf?auto=format&fit=crop&q=80&w=1500');
+            background-size: cover; background-position: center;
+            color: white; padding: 80px 20px; text-align: center;
+        }
+
+        /* Interactive Article Jump Menu */
+        .jump-menu {
+            background: var(--cream);
+            padding: 15px;
+            position: sticky;
+            top: 50px;
+            z-index: 999;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            overflow-x: auto;
+            border-bottom: 2px solid var(--honey);
+        }
+        .jump-link {
+            white-space: nowrap;
+            padding: 8px 16px;
+            background: var(--white);
+            border-radius: 20px;
+            color: var(--dark-green);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.8rem;
+            border: 1px solid var(--honey);
+            transition: 0.3s;
+        }
+        .jump-link:hover { background: var(--honey); color: white; }
+
+        /* Main Blog Layout */
+        .blog-container {
+            max-width: 1100px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: 1fr 300px; /* Sidebar layout */
+            gap: 40px;
+            padding: 0 20px;
+        }
+
+        /* Blog Posts List */
+        .post-preview {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .post-img { width: 100%; height: 250px; background-size: cover; background-position: center; }
+        .post-details { padding: 30px; }
+        .post-details .tag { background: var(--honey); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; }
+        .post-details h2 { margin: 15px 0; color: var(--dark-green); }
+        body.dark-theme .post-details h2 { color: var(--honey); }
+        .post-meta { font-size: 0.8rem; color: #777; margin-bottom: 15px; }
+
+        .btn-read {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 25px;
+            background: var(--dark-green);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn-read:hover { background: var(--mid-green); transform: translateX(5px); }
+
+        /* Sidebar Widgets */
+        .sidebar { position: sticky; top: 120px; height: fit-content; }
+        .widget {
+            background: var(--soft-gray);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+        .widget h4 { margin-top: 0; color: var(--dark-green); border-bottom: 2px solid var(--honey); padding-bottom: 10px; }
+
+        /* Theme Toggle (Same as Index) */
+        .theme-toggle { position: fixed; top: 20px; right: 20px; z-index: 2000; background: var(--honey); color: white; border: none; padding: 10px; border-radius: 50%; width: 45px; height: 45px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+
+        @media (max-width: 900px) {
+            .blog-container { grid-template-columns: 1fr; }
+            .sidebar { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="progress-container"><div class="progress-bar" id="myBar"></div></div>
+<div id="loader-overlay"><div class="spinner"></div></div>
+
+<button class="theme-toggle" onclick="toggleTheme()">
+    <i class="fa-solid fa-moon"></i>
+</button>
+
+<nav>
+    <a href="index.html">HOME</a>
+    <a href="index.html#remedies">LIBRARY</a>
+    <a href="blog.html" style="color: var(--honey);">BLOG</a>
+    <a href="about.html">ABOUT</a>
+</nav>
+
+<section class="blog-hero">
+    <h1>The Wisdom Blog</h1>
+    <p>Articles on Longevity, Herbal Traditions, and Modern Science.</p>
+</section>
+
+<div class="jump-menu">
+    <a href="#post1" class="jump-link">Morning Rituals</a>
+    <a href="#post2" class="jump-link">Understanding Adaptogens</a>
+    <a href="#post3" class="jump-link">Spring Detox Guide</a>
+    <a href="#post4" class="jump-link">Castor Oil Packs</a>
+</div>
+
+<div class="blog-container">
+    <main>
+        <article class="post-preview" id="post1">
+            <div class="post-img" style="background-image: url('https://images.unsplash.com/photo-1544145945-f904253d0c71?auto=format&fit=crop&q=80&w=800')"></div>
+            <div class="post-details">
+                <span class="tag">Daily Rituals</span>
+                <h2>The 5 Best Morning Rituals with Herbs</h2>
+                <div class="post-meta">January 20, 2026 | 6 min read</div>
+                <p>Start your day with purpose. From ginger-lemon infusions to conscious breathing, discover how to kickstart your metabolism...</p>
+                <a href="blog-morning-rituals.html" class="btn-read">Read Full Article <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </article>
+
+        <article class="post-preview" id="post2">
+            <div class="post-img" style="background-image: url('https://images.unsplash.com/photo-1515489413482-673be9f32ca1?auto=format&fit=crop&q=80&w=800')"></div>
+            <div class="post-details">
+                <span class="tag">Education</span>
+                <h2>Understanding Adaptogens: Nature's Stress Shield</h2>
+                <div class="post-meta">January 15, 2026 | 10 min read</div>
+                <p>Not all herbs are created equal. Adaptogens like Ashwagandha and Reishi work with your HPA-axis to regulate cortisol...</p>
+                <a href="blog-adaptogens.html" class="btn-read">Read Full Article <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </article>
+    </main>
+
+    <aside class="sidebar">
+        <div class="widget">
+            <h4>Newsletter</h4>
+            <p style="font-size: 0.85rem;">Get herbal wisdom delivered to your inbox weekly.</p>
+            <input type="email" placeholder="Email Address" style="width:100%; padding:10px; margin-bottom:10px; border-radius:5px; border:1px solid #ccc;">
+            <button class="btn-read" style="width:100%; border:none; cursor:pointer;">Subscribe</button>
+        </div>
+
+        <div class="widget">
+            <h4>Categories</h4>
+            <ul style="list-style:none; padding:0; font-size:0.9rem;">
+                <li style="margin-bottom:10px;"><a href="#" style="color:var(--mid-green); text-decoration:none;">🌿 Seasonal Detox</a></li>
+                <li style="margin-bottom:10px;"><a href="#" style="color:var(--mid-green); text-decoration:none;">🧠 Cognitive Health</a></li>
+                <li style="margin-bottom:10px;"><a href="#" style="color:var(--mid-green); text-decoration:none;">💤 Sleep Optimization</a></li>
+            </ul>
+        </div>
+    </aside>
+</div>
+
+<footer style="background: var(--dark-green); color: white; text-align: center; padding: 40px;">
+    <p>&copy; 2026 Wise & Healthy Living | Wisdom Blog</p>
+</footer>
+
+<script>
+    function toggleTheme() {
+        document.body.classList.toggle('dark-theme');
+        localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
+    }
+
+    function updateProgressBar() {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        document.getElementById("myBar").style.width = ((winScroll / height) * 100) + "%";
+    }
+
+    window.onscroll = () => updateProgressBar();
+
+    window.addEventListener('DOMContentLoaded', () => {
+        if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark-theme');
+    });
+</script>
+
+</body>
+</html>
+
