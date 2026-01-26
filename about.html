@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Wise & Healthy Living</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --dark-green: #1b4332;
+            --mid-green: #2d6a4f;
+            --honey: #d4a373;
+            --cream: #fefae0;
+            --white: #ffffff;
+            --text-color: #333;
+        }
+
+        body.dark-theme {
+            --white: #121212;
+            --dark-green: #081c15;
+            --cream: #1e1e1a;
+            --text-color: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            background-color: var(--white);
+            color: var(--text-color);
+            line-height: 1.8;
+            transition: 0.3s;
+        }
+
+        nav {
+            background: var(--dark-green);
+            padding: 15px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin: 0 15px;
+        }
+
+        .hero-about {
+            background: linear-gradient(rgba(27, 67, 50, 0.8), rgba(27, 67, 50, 0.8)), 
+                        url('https://images.unsplash.com/photo-1490237014491-8aa29811ea61?auto=format&fit=crop&q=80&w=1000');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .content-container {
+            max-width: 850px;
+            margin: 60px auto;
+            padding: 0 25px;
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .mission-item {
+            background: var(--cream);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            border-bottom: 4px solid var(--honey);
+        }
+
+        .mission-item i {
+            font-size: 2.5rem;
+            color: var(--mid-green);
+            margin-bottom: 15px;
+        }
+
+        h2 { color: var(--dark-green); text-align: center; }
+        body.dark-theme h2 { color: var(--honey); }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: var(--dark-green);
+            color: white;
+            margin-top: 100px;
+        }
+
+        .signature {
+            font-family: 'Georgia', serif;
+            font-style: italic;
+            color: var(--honey);
+            font-size: 1.2rem;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html">HOME</a>
+    <a href="index.html#remedies">LIBRARY</a>
+    <a href="index.html#contact">CONTACT</a>
+</nav>
+
+<section class="hero-about">
+    <h1>Our Vision</h1>
+    <p>Bridging the gap between ancient botanical wisdom and modern science.</p>
+</section>
+
+<div class="content-container">
+    <h2>Why We Exist</h2>
+    <p>In a world of synthetic solutions and overwhelming information, <strong>Wise & Healthy Living</strong> was created to be a sanctuary of clarity. We believe that nature provides the building blocks for vitality, but wisdom lies in knowing how to use them safely and effectively.</p>
+
+    
+
+    <div class="mission-grid">
+        <div class="mission-item">
+            <i class="fa-solid fa-seedling"></i>
+            <h3>Purity</h3>
+            <p>We focus on whole-herb solutions that respect the body's natural balance.</p>
+        </div>
+        <div class="mission-item">
+            <i class="fa-solid fa-microscope"></i>
+            <h3>Evidence</h3>
+            <p>Every remedy in our library is backed by peer-reviewed clinical research.</p>
+        </div>
+        <div class="mission-item">
+            <i class="fa-solid fa-hand-holding-heart"></i>
+            <h3>Integrity</h3>
+            <p>Your health is our priority. We provide transparency in every source we cite.</p>
+        </div>
+    </div>
+
+    <div style="margin-top: 80px; text-align: center;">
+        <h2>The Founder's Promise</h2>
+        <p>I started this project because I saw a need for a health resource that didn't just sell products, but shared knowledge. Our goal is to empower you to make informed, natural choices for your family.</p>
+        <div class="signature">Be Wise. Stay Healthy.</div>
+    </div>
+</div>
+
+<footer>
+    &copy; 2026 Wise & Healthy Living | Empowering Natural Choices
+</footer>
+
+<script>
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-theme');
+    }
+</script>
+
+</body>
+</html>
+
