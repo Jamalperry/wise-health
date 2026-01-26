@@ -87,6 +87,43 @@
         .more-content { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(0,0,0,0.1); font-size: 0.9rem; }
         .read-more-btn { color: var(--mid-green); cursor: pointer; font-weight: bold; background: none; border: none; margin-top: 15px; padding: 0; }
 
+        /* Add this to your CSS block to make the "grid" work */
+.social-contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 20px;
+}
+
+.social-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    padding: 20px;
+    background: var(--soft-gray);
+    border-radius: 10px;
+    transition: 0.3s;
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+.social-item:hover {
+    background: var(--cream);
+    transform: translateY(-5px);
+}
+
+.social-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+/* Specific Icon Colors */
+.fa-whatsapp { color: #25d366; }
+.fa-envelope { color: var(--honey); }
+
+@media (max-width: 480px) {
+    .social-contact-grid { grid-template-columns: 1fr; } /* Stack on mobile */
+}
         /* Source Link Boxes */
         .source-link { background: var(--soft-gray); padding: 12px; border-radius: 8px; margin-top: 15px; font-size: 0.8rem; border: 1px solid rgba(0,0,0,0.05); }
         .source-link a { color: var(--mid-green); text-decoration: underline; font-weight: bold; display: block; margin-top: 4px; }
