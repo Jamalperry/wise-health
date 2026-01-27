@@ -571,6 +571,25 @@ form.addEventListener('submit', async function(e) {
     searchBlog();
     window.scrollTo({ top: 200, behavior: 'smooth' }); // Scrolls to search results
         }
+
+    function calculateReadTime() {
+    const posts = document.querySelectorAll('.post-preview');
+    
+    posts.forEach(post => {
+        const text = post.querySelector('p').innerText;
+        const wpm = 200; // Average reading speed
+        const words = text.trim().split(/\s+/).length;
+        const time = Math.ceil(words / wpm);
+        
+        // Find the meta div and append/update the time
+        const meta = post.querySelector('.post-meta');
+        meta.innerHTML = meta.innerHTML.split('|')[0] + ` | <i class="fa-regular fa-clock"></i> ${time} min read`;
+    });
+}
+
+// Run it when the page loads
+window.addEventListener('DOMContentLoaded', calculateReadTime);
+
 </script>
 
 </body>
