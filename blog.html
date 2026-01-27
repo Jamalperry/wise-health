@@ -77,6 +77,17 @@
             overflow-x: auto;
             border-bottom: 2px solid var(--honey);
         }
+
+        .jump-menu {
+    top: 50px; /* Adjust this to match the exact height of your nav */
+    background: var(--white); /* Matches the body for a 'floating' feel */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+body.dark-theme .jump-menu {
+    background: var(--soft-gray);
+}
+
         .jump-link {
             white-space: nowrap;
             padding: 8px 16px;
@@ -241,7 +252,7 @@ body.dark-theme .blog-search-wrapper {
     <p>Try searching for "Detox", "Science", or "Rituals".</p>
 </div>
 
-        <article class="post-preview" id="post1">
+        <article class="post-preview" id="post1" aria-label="Article About Morning Rituals">
             <div class="post-img" style="background-image: url('https://images.unsplash.com/photo-1514733670139-4d87a1941d55?auto=format&fit=crop&q=80&w=800')"></div>
             <div class="post-details">
                 <span class="tag">Morning Rituals</span>
@@ -257,7 +268,7 @@ body.dark-theme .blog-search-wrapper {
     <p>Try searching for "Detox", "Science", or "Rituals".</p>
 </div>
 
-        <article class="post-preview" id="post2">
+        <article class="post-preview" id="post2" aria-label="Article About Adaptogens">
             <div class="post-img" style="background-image: url('https://images.unsplash.com/photo-1512429234300-12e05f8f74a9?auto=format&fit=crop&q=80&w=800')"></div>
             <div class="post-details">
                 <span class="tag">Herbal Science</span>
@@ -273,7 +284,7 @@ body.dark-theme .blog-search-wrapper {
     <p>Try searching for "Detox", "Science", or "Rituals".</p>
 </div>
 
-        <article class="post-preview" id="post3">
+        <article class="post-preview" id="post3" aria-label="Article About Barrier of the Digestive System">
             <div class="post-img" style="background-image: url('https://images.unsplash.com/photo-1515489413482-673be9f32ca1?auto=format&fit=crop&q=80&w=800')"></div>
             <div class="post-details">
                 <span class="tag">Education and Science</span>
@@ -290,7 +301,7 @@ body.dark-theme .blog-search-wrapper {
     <p>Try searching for "Detox", "Science", or "Rituals".</p>
 </div>
 
-        <article class="post-preview" id="post4">
+        <article class="post-preview" id="post4" aria-label="Article About Spring Detox Guide">
             <div class="post-img" style="background-image: url('https://images.unsplash.com/photo-1540324155974-7523202daa3f?auto=format&fit=crop&q=80&w=800')"></div>
             <div class="post-details">
                 <span class="tag">Seasonal Health</span>
@@ -306,7 +317,7 @@ body.dark-theme .blog-search-wrapper {
     <p>Try searching for "Detox", "Science", or "Rituals".</p>
 </div>
 
-        <article class="post-preview" id="post5">
+        <article class="post-preview" id="post5" aria-label="Article About Deep Tissue Ritual">
             <div class="post-img" style="background-image: url('https://images.unsplash.com/photo-1626073703144-633005822305?auto=format&fit=crop&q=80&w=800')"></div>
             <div class="post-details">
                 <span class="tag">Topical Care</span>
