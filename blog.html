@@ -235,6 +235,12 @@ body.dark-theme .blog-search-wrapper {
 
 <div class="blog-container">
     <main>
+        <div id="noResults" style="display:none; text-align:center; padding:50px; color:var(--honey);">
+    <i class="fa-solid fa-seedling" style="font-size:3rem; margin-bottom:20px;"></i>
+    <h3>No articles found matching your search.</h3>
+    <p>Try searching for "Detox", "Science", or "Rituals".</p>
+</div>
+
         <article class="post-preview" id="post1">
             <div class="post-img" style="background-image: url('https://images.unsplash.com/photo-1514733670139-4d87a1941d55?auto=format&fit=crop&q=80&w=800')"></div>
             <div class="post-details">
@@ -245,6 +251,11 @@ body.dark-theme .blog-search-wrapper {
                 <a href="rituals.html" class="btn-read">Read Full Article <i class="fa-solid fa-arrow-right"></i></a>
             </div>
         </article>
+<div id="noResults" style="display:none; text-align:center; padding:50px; color:var(--honey);">
+    <i class="fa-solid fa-seedling" style="font-size:3rem; margin-bottom:20px;"></i>
+    <h3>No articles found matching your search.</h3>
+    <p>Try searching for "Detox", "Science", or "Rituals".</p>
+</div>
 
         <article class="post-preview" id="post2">
             <div class="post-img" style="background-image: url('https://images.unsplash.com/photo-1512429234300-12e05f8f74a9?auto=format&fit=crop&q=80&w=800')"></div>
@@ -256,6 +267,11 @@ body.dark-theme .blog-search-wrapper {
                 <a href="adaptogens.html" class="btn-read">Read Full Article <i class="fa-solid fa-arrow-right"></i></a>
             </div>
         </article>
+<div id="noResults" style="display:none; text-align:center; padding:50px; color:var(--honey);">
+    <i class="fa-solid fa-seedling" style="font-size:3rem; margin-bottom:20px;"></i>
+    <h3>No articles found matching your search.</h3>
+    <p>Try searching for "Detox", "Science", or "Rituals".</p>
+</div>
 
         <article class="post-preview" id="post3">
             <div class="post-img" style="background-image: url('https://images.unsplash.com/photo-1515489413482-673be9f32ca1?auto=format&fit=crop&q=80&w=800')"></div>
@@ -268,6 +284,11 @@ body.dark-theme .blog-search-wrapper {
                 <a href="bioavailability-guide.html" class="btn-read">Read Full Article <i class="fa-solid fa-arrow-right"></i></a>
             </div>
         </article>
+<div id="noResults" style="display:none; text-align:center; padding:50px; color:var(--honey);">
+    <i class="fa-solid fa-seedling" style="font-size:3rem; margin-bottom:20px;"></i>
+    <h3>No articles found matching your search.</h3>
+    <p>Try searching for "Detox", "Science", or "Rituals".</p>
+</div>
 
         <article class="post-preview" id="post4">
             <div class="post-img" style="background-image: url('https://images.unsplash.com/photo-1540324155974-7523202daa3f?auto=format&fit=crop&q=80&w=800')"></div>
@@ -279,6 +300,11 @@ body.dark-theme .blog-search-wrapper {
                 <a href="spring-detox.html" class="btn-read">Read Full Article <i class="fa-solid fa-arrow-right"></i></a>
             </div>
         </article>
+<div id="noResults" style="display:none; text-align:center; padding:50px; color:var(--honey);">
+    <i class="fa-solid fa-seedling" style="font-size:3rem; margin-bottom:20px;"></i>
+    <h3>No articles found matching your search.</h3>
+    <p>Try searching for "Detox", "Science", or "Rituals".</p>
+</div>
 
         <article class="post-preview" id="post5">
             <div class="post-img" style="background-image: url('https://images.unsplash.com/photo-1626073703144-633005822305?auto=format&fit=crop&q=80&w=800')"></div>
@@ -359,6 +385,34 @@ body.dark-theme .blog-search-wrapper {
 function clearBlogSearch() {
     document.getElementById('blogSearchInput').value = '';
     searchBlog();
+}
+
+    //new
+
+    function searchBlog() {
+    const input = document.getElementById('blogSearchInput');
+    const filter = input.value.toLowerCase();
+    const posts = document.querySelectorAll('.post-preview');
+    const clearBtn = document.getElementById('blogClearBtn');
+    const noResults = document.getElementById('noResults');
+    let visibleCount = 0;
+
+    clearBtn.style.display = input.value.length > 0 ? "block" : "none";
+
+    posts.forEach(post => {
+        const title = post.querySelector('h2').innerText.toLowerCase();
+        const tag = post.querySelector('.tag').innerText.toLowerCase();
+        const snippet = post.querySelector('p').innerText.toLowerCase();
+        
+        if (title.includes(filter) || tag.includes(filter) || snippet.includes(filter)) {
+            post.style.display = "";
+            visibleCount++;
+        } else {
+            post.style.display = "none";
+        }
+    });
+
+    noResults.style.display = (visibleCount === 0) ? "block" : "none";
 }
 
 </script>
