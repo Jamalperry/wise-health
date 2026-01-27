@@ -207,6 +207,49 @@ body.dark-theme .blog-search-wrapper {
         from { opacity: 0; transform: translateY(10px); }
         to { opacity: 1; transform: translateY(0); }
             }
+
+        @media print {
+    /* Hide interactive elements that don't belong on paper */
+    nav, .jump-menu, .blog-hero, .blog-search-container, 
+    .sidebar, .theme-toggle, footer, .progress-container, 
+    .btn-read, #backToTop {
+        display: none !important;
+    }
+
+    /* Expand the main content to full width */
+    .blog-container {
+        display: block;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    main {
+        width: 100% !important;
+    }
+
+    /* Format posts for paper */
+    .post-preview {
+        box-shadow: none;
+        border: 1px solid #eee;
+        page-break-inside: avoid; /* Prevents splitting a post across two pages */
+        margin-bottom: 50px;
+    }
+
+    .post-img {
+        height: 200px; /* Smaller images to save ink */
+    }
+
+    body {
+        background: white !important;
+        color: black !important;
+        font-size: 12pt;
+    }
+
+    h2 {
+        color: #1b4332 !important;
+    }
+        }
     </style>
 </head>
 <body>
