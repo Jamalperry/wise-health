@@ -359,9 +359,15 @@ body.dark-theme .blog-search-wrapper {
         <div class="widget">
             <h4>Categories</h4>
             <ul style="list-style:none; padding:0; font-size:0.9rem;">
-                <li style="margin-bottom:10px;"><a href="#" style="color:var(--mid-green); text-decoration:none;">🌿 Seasonal Detox</a></li>
-                <li style="margin-bottom:10px;"><a href="#" style="color:var(--mid-green); text-decoration:none;">🧠 Cognitive Health</a></li>
-                <li style="margin-bottom:10px;"><a href="#" style="color:var(--mid-green); text-decoration:none;">💤 Sleep Optimization</a></li>
+    <li style="margin-bottom:10px;">
+        <a href="javascript:void(0)" onclick="filterByCategory('Seasonal Health')" style="color:var(--mid-green); text-decoration:none;">🌿 Seasonal Detox</a>
+    </li>
+    <li style="margin-bottom:10px;">
+        <a href="javascript:void(0)" onclick="filterByCategory('Morning Rituals')" style="color:var(--mid-green); text-decoration:none;">☀️ Morning Rituals</a>
+    </li>
+    <li style="margin-bottom:10px;">
+        <a href="javascript:void(0)" onclick="filterByCategory('Herbal Science')" style="color:var(--mid-green); text-decoration:none;">🧠 Herbal Science</a>
+    </li>
             </ul>
         </div>
     </aside>
@@ -517,7 +523,11 @@ form.addEventListener('submit', async function(e) {
         btn.disabled = false;
     }
 });
-    
+    function filterByCategory(catName) {
+    document.getElementById('blogSearchInput').value = catName;
+    searchBlog();
+    window.scrollTo({ top: 200, behavior: 'smooth' }); // Scrolls to search results
+        }
 </script>
 
 </body>
