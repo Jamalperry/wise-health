@@ -124,6 +124,48 @@
         }
         .btn-read:hover { background: var(--mid-green); transform: translateX(5px); }
 
+        .blog-search-container {
+    max-width: 800px;
+    margin: -30px auto 40px; /* Overlaps slightly with hero for a modern look */
+    padding: 0 20px;
+    position: relative;
+    z-index: 1001;
+}
+
+.blog-search-wrapper {
+    background: var(--white);
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 50px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border: 2px solid var(--honey);
+}
+
+.blog-search-wrapper input {
+    border: none;
+    outline: none;
+    padding: 10px;
+    width: 100%;
+    font-size: 1rem;
+    background: transparent;
+    color: var(--text-color);
+}
+
+.search-icon { color: var(--honey); font-size: 1.2rem; }
+
+.blog-clear-btn {
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    display: none; /* Hidden by default */
+}
+
+body.dark-theme .blog-search-wrapper {
+    background: var(--soft-gray);
+}
+
         /* Sidebar Widgets */
         .sidebar { position: sticky; top: 120px; height: fit-content; }
         .widget {
@@ -162,8 +204,18 @@
 <section class="blog-hero">
     <h1>The Wisdom Blog</h1>
     <p>Articles on Longevity, Herbal Traditions, and Modern Science.</p>
+    
 </section>
 <!--<a href="bioavailability-guide.html" class="btn-read">Read Full Article <i class="fa-solid fa-arrow-right"></i></a>-->
+<section class="blog-search-container">
+    <div class="blog-search-wrapper">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" id="blogSearchInput" onkeyup="searchBlog()" placeholder="Search articles (e.g., 'Bioavailability', 'Rituals')...">
+        <button class="blog-clear-btn" id="blogClearBtn" onclick="clearBlogSearch()">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+</section>
 
 <div class="jump-menu">
     <a href="#post1" class="jump-link">Morning Rituals</a>
@@ -237,6 +289,35 @@
     window.addEventListener('DOMContentLoaded', () => {
         if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark-theme');
     });
+
+    function searchBlog() {
+    const input = document.getElementById('blogSearchInput');
+    const filter = input.value.toLowerCase();
+    const posts = document.querySelectorAll('.post-preview');
+    const clearBtn = document.getElementById('blogClearBtn');
+
+    // Show/Hide clear button
+    clearBtn.style.display = input.value.length > 0 ? "block" : "none";
+
+    posts.forEach(post => {
+        // Search in Title, Tag, and Description
+        const title = post.querySelector('h2').innerText.toLowerCase();
+        const tag = post.querySelector('.tag').innerText.toLowerCase();
+        const snippet = post.querySelector('p').innerText.toLowerCase();
+        
+        if (title.includes(filter) || tag.includes(filter) || snippet.includes(filter)) {
+            post.style.display = "";
+        } else {
+            post.style.display = "none";
+        }
+    });
+}
+
+function clearBlogSearch() {
+    document.getElementById('blogSearchInput').value = '';
+    searchBlog();
+}
+
 </script>
 
 </body>
