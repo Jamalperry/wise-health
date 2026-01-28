@@ -148,24 +148,28 @@ body.dark-theme .comparison-table td {
 
 
         
+                
         /* Add this to your CSS block to make the "grid" work */
 .social-contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Two equal columns */
-    gap: 20px;
+    display: flex; /* Use flex for easier row management */
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 8px; /* Slightly tighter gap for mobile safety */
+    width: 100%;
 }
 
 .social-item {
+    flex: 1; /* Forces all 4 items to take up equal width */
     display: flex;
     flex-direction: column;
     align-items: center;
     text-decoration: none;
-    padding: 20px;
-    background: var(--soft-gray);
+    padding: 15px 5px; /* Reduced side padding to prevent overflow */
+    background: var(--dark-green);
     border-radius: 10px;
     transition: 0.3s;
     color: var(--text-color);
-    font-weight: bold;
+    min-width: 0; /* Prevents flex items from breaking layout */
 }
 
 .social-item:hover {
@@ -174,10 +178,15 @@ body.dark-theme .comparison-table td {
 }
 
 .social-icon {
-    font-size: 2rem;
-    margin-bottom: 10px;
+    font-size: 1.8rem; /* Slightly smaller to ensure fit */
+    margin-bottom: 5px;
 }
 
+.social-item span {
+    font-size: 0.85rem; /* Standard size */
+    text-align: center;
+    white-space: nowrap; /* Keeps text on one line */
+}
         .blog-preview-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -746,23 +755,33 @@ body.dark-theme .recent-tag {
     </div>
     </section>
 
-<section class="contact-section" id="contact">
-    <div style="max-width: 600px; margin: auto; background: var(--white); padding: 40px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
-        <h2 style="text-align: center;">Get in Touch</h2>
+<footer>
+    <section class="contact-section" id="contact">
+    <div style="max-width: 100%; margin: auto; background: var(--dark-green); padding: 10px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
+        <h2 style="text-align: center; margin-bottom: 25px; color: --var(white);">Let's Connect</h2>
         <div class="social-contact-grid">
             <a href="https://wa.me/17587235872" class="social-item" target="_blank">
-                <i class="fa-brands fa-whatsapp social-icon" style="color:#25d366"></i>
-                <span style="font-weight:bold">WhatsApp</span>
+                <i class="fa-brands fa-whatsapp social-icon" style="color: var(--white);"></i>
+                <span></span>
             </a>
+            
+            <a href="https://www.facebook.com/share/1HLipef9e8/" class="social-item" target="_blank">
+                <i class="fa-brands fa-facebook social-icon" style="color: var(--white);"></i>
+                <span></span>
+            </a>
+            
+            <a href="https://www.instagram.com/wiseandhealthy_living?igsh=eDU0bGE4N2MweXp4" class="social-item" target="_blank">
+                <i class="fa-brands fa-instagram social-icon" style="color: var(--white);"></i>
+                <span></span>
+            </a>
+            
             <a href="mailto:wiseandhealthyliving@yahoo.com" class="social-item">
-                <i class="fa-solid fa-envelope social-icon" style="color:var(--honey)"></i>
-                <span style="font-weight:bold">Email Us</span>
+                <i class="fa-solid fa-envelope social-icon" style="color: var(--white);"></i>
+                <span></span>
             </a>
         </div>
     </div>
-</section>
-
-<footer>
+    </section>
     <div class="disclaimer-box">
         <strong>MEDICAL DISCLAIMER:</strong> This site does not provide medical advice. 
         <br>
