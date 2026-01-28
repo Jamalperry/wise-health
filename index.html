@@ -247,6 +247,59 @@ body.dark-theme .blog-content h3 { color: var(--honey); }
     display: block;
 }
 
+        .seasonal-banner {
+    background: var(--cream);
+    border-bottom: 2px solid var(--honey);
+    padding: 15px 20px;
+    display: none; /* Hidden until JS determines season */
+    transition: all 0.5s ease;
+}
+
+.banner-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+#seasonIcon {
+    font-size: 2rem;
+    color: var(--mid-green);
+}
+
+.banner-text h4 {
+    margin: 0;
+    color: var(--dark-green);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.banner-text p {
+    margin: 0;
+    font-size: 0.95rem;
+    font-style: italic;
+}
+
+.banner-link {
+    margin-left: auto;
+    color: var(--mid-green);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.85rem;
+}
+
+body.dark-theme .seasonal-banner {
+    background: #1e1e1a;
+}
+
+@media (max-width: 600px) {
+    .banner-content { flex-direction: column; text-align: center; }
+    .banner-link { margin: 10px auto 0; }
+}
+
+
         @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
         .highlight-flash { outline: 4px solid var(--honey); border-radius: 15px; }
 
@@ -272,6 +325,16 @@ body.dark-theme .blog-content h3 { color: var(--honey); }
 <header id="home">
     <img src="wiselogo.png" alt="Wise & Healthy Living" class="logo">
 </header>
+<section id="seasonalBanner" class="seasonal-banner">
+    <div class="banner-content">
+        <span id="seasonIcon"></span>
+        <div class="banner-text">
+            <h4 id="seasonTitle"></h4>
+            <p id="seasonTip"></p>
+        </div>
+        <a href="calendar.html" class="banner-link">View Harvest Guide <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+</section>
 
 <nav>
     <a href="#home">Home</a>
@@ -713,6 +776,57 @@ body.dark-theme .blog-content h3 { color: var(--honey); }
         updateProgressBar();
         document.getElementById("backToTop").style.display = (window.scrollY > 500) ? "flex" : "none";
     };
+
+    function updateSeasonalBanner() {
+    const month = new Date().getMonth(); // 0 = Jan, 1 = Feb, etc.
+    const banner = document.getElementById('seasonalBanner');
+    const icon = document.getElementById('seasonIcon');
+    const title = document.getElementById('seasonTitle');
+    const tip = document.getElementById('seasonTip');
+
+    let seasonData = {};
+
+    // Determine Season
+    if (month >= 2 && month <= 4) { // March, April, May
+        seasonData = {
+            name: "Spring Awakening",
+            icon: "fa-solid fa-seedling",
+            tip: "Time for Dandelion & Nettles. Focus on liver support this month.",
+            color: "#2d6a4f"
+        };
+    } else if (month >= 5 && month <= 7) { // June, July, August
+        seasonData = {
+            name: "Summer Vitality",
+            icon: "fa-solid fa-sun",
+            tip: "Harvest St. John's Wort and Peppermint. Stay hydrated with solar infusions.",
+            color: "#d4a373"
+        };
+    } else if (month >= 8 && month <= 10) { // September, October, November
+        seasonData = {
+            name: "Autumn Harvest",
+            icon: "fa-solid fa-leaf",
+            tip: "Elderberries are ripe! Time to build your winter immune shield.",
+            color: "#bc4749"
+        };
+    } else { // December, January, February
+        seasonData = {
+            name: "Winter Restoration",
+            icon: "fa-solid fa-snowflake",
+            tip: "Focus on warming roots and deep rest. Pine needle tea is rich in Vitamin C.",
+            color: "#1b4332"
+        };
+    }
+
+    // Apply to UI
+    title.innerText = seasonData.name;
+    icon.innerHTML = `<i class="${seasonData.icon}"></i>`;
+    tip.innerText = seasonData.tip;
+    banner.style.display = "block";
+}
+
+// Initialize on load
+window.addEventListener('DOMContentLoaded', updateSeasonalBanner);
+
 </script>
 
 </body>
