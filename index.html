@@ -299,6 +299,60 @@ body.dark-theme .seasonal-banner {
     .banner-link { margin: 10px auto 0; }
 }
 
+        .recent-container {
+    max-width: 1100px;
+    margin: 20px auto;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-family: sans-serif;
+}
+
+.recent-label {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: var(--honey);
+    text-transform: uppercase;
+}
+
+.recent-list {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.recent-tag {
+    background: var(--soft-gray);
+    color: var(--mid-green);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: 0.3s;
+}
+
+.recent-tag:hover {
+    border-color: var(--honey);
+    background: var(--white);
+}
+
+.clear-history {
+    background: none;
+    border: none;
+    color: #999;
+    font-size: 0.75rem;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+body.dark-theme .recent-tag {
+    background: #2a2a2a;
+    color: var(--honey);
+}
+
+
 
         @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
         .highlight-flash { outline: 4px solid var(--honey); border-radius: 15px; }
@@ -361,7 +415,12 @@ body.dark-theme .seasonal-banner {
 <div class="container" id="remedies">
     <div id="featuredSection"></div>
     <h2 style="text-align: center; color: var(--dark-green); margin-bottom: 40px; margin-top: 40px;">Explore the Directory</h2>
-    
+    <div id="recentSearchesContainer" class="recent-container" style="display:none;">
+    <span class="recent-label">Recently Viewed:</span>
+    <div id="recentList" class="recent-list"></div>
+    <button onclick="clearHistory()" class="clear-history">Clear</button>
+</div>
+
     <div class="grid" id="remedyGrid">
         
         <div class="card" data-tags="nutrition energy vitamins minerals">
@@ -827,6 +886,59 @@ body.dark-theme .seasonal-banner {
 
 // Initialize on load
 window.addEventListener('DOMContentLoaded', updateSeasonalBanner);
+
+    const MAX_HISTORY = 5;
+
+// Function to add a term to history
+function addToHistory(term) {
+    let history = JSON.parse(localStorage.getItem('remedyHistory')) || [];
+    
+    // Remove if already exists (to move to front)
+    history = history.filter(item => item !== term);
+    history.unshift(term);
+    
+    // Keep only the latest 5
+    if (history.length > MAX_HISTORY) history.pop();
+    
+    localStorage.setItem('remedyHistory', JSON.stringify(history));
+    displayHistory();
+}
+
+// Function to display history
+function displayHistory() {
+    const history = JSON.parse(localStorage.getItem('remedyHistory')) || [];
+    const container = document.getElementById('recentSearchesContainer');
+    const list = document.getElementById('recentList');
+    
+    if (history.length === 0) {
+        container.style.display = "none";
+        return;
+    }
+    
+    container.style.display = "flex";
+    list.innerHTML = history.map(term => 
+        `<span class="recent-tag" onclick="quickSearch('${term}')">${term}</span>`
+    ).join('');
+}
+
+// Run a search when clicking a tag
+function quickSearch(term) {
+    const searchInput = document.getElementById('remedySearchInput'); // Ensure this matches your search ID
+    searchInput.value = term;
+    // Trigger your existing search function
+    if (typeof filterRemedies === "function") filterRemedies(); 
+}
+
+function clearHistory() {
+    localStorage.removeItem('remedyHistory');
+    displayHistory();
+}
+
+// Call on load
+window.addEventListener('DOMContentLoaded', displayHistory);
+
+// UPDATE: Add this line to your "Read Full Article" buttons or card clicks:
+// Example: <a href="..." onclick="addToHistory('Ashwagandha')">Read More</a>
 
 </script>
 
