@@ -96,6 +96,58 @@
         .more-content { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(0,0,0,0.1); font-size: 0.9rem; }
         .read-more-btn { color: var(--mid-green); cursor: pointer; font-weight: bold; background: none; border: none; margin-top: 15px; padding: 0; }
 
+        .comparison-section {
+    max-width: 900px;
+    margin: 60px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.table-wrapper {
+    overflow-x: auto; /* For mobile responsiveness */
+    margin-top: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    text-align: left;
+}
+
+.comparison-table th {
+    background: var(--dark-green);
+    color: white;
+    padding: 20px;
+    font-size: 1.1rem;
+}
+
+.comparison-table td {
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.comparison-table tr:nth-child(even) {
+    background-color: var(--soft-gray);
+}
+
+.comparison-table tr:hover {
+    background-color: var(--cream);
+}
+
+body.dark-theme .comparison-table {
+    background: #1a1a1a;
+    color: #e0e0e0;
+}
+
+body.dark-theme .comparison-table td {
+    border-bottom: 1px solid #333;
+}
+
+
+        
         /* Add this to your CSS block to make the "grid" work */
 .social-contact-grid {
     display: grid;
@@ -664,11 +716,55 @@ body.dark-theme .recent-tag {
     <p id="fact-text"></p>
 </section>
 
+    <section class="comparison-section">
+    <h2>Herbal Comparison: Managing Stress</h2>
+    <p>While both are adaptogens, their clinical profiles offer different benefits depending on your body's needs.</p>
+    
+    <div class="table-wrapper">
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>Ashwagandha</th>
+                    <th>Rhodiola Rosea</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Primary Action</strong></td>
+                    <td>Calming & Sedative</td>
+                    <td>Stimulating & Energizing</td>
+                </tr>
+                <tr>
+                    <td><strong>Best For</strong></td>
+                    <td>Anxiety & Insomnia</td>
+                    <td>Fatigue & Brain Fog</td>
+                </tr>
+                <tr>
+                    <td><strong>HPA Axis Effect</strong></td>
+                    <td>Lowers Cortisol</td>
+                    <td>Balances Norepinephrine</td>
+                </tr>
+                <tr>
+                    <td><strong>Science Level</strong></td>
+                    <td>High (Many Human Trials)</td>
+                    <td>Moderate (Strong Pilot Studies)</td>
+                </tr>
+                <tr>
+                    <td><strong>Bioavailability</strong></td>
+                    <td>Enhanced with Healthy Fats</td>
+                    <td>High in Water Extractions</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
     <section class="container" id="blog-preview">
     <h2 style="text-align: center; color: var(--dark-green); margin-bottom: 40px; margin-top: 0px;">From the Wisdom Blog</h2>
     <div class="blog-preview-grid">
         
-        <div class="blog-item">
+        <div class="blog-item" style="margin: 5%;">
             <div class="blog-img" style="background-image: url('wiselogo.png')"></div>
             <div class="blog-content">
                 <span class="blog-date">Jan 20, 2026</span>
@@ -678,7 +774,7 @@ body.dark-theme .recent-tag {
             </div>
         </div>
 
-        <div class="blog-item">
+        <div class="blog-item" style="margin: 5%;">
             <div class="blog-img" style="background-image: url('wiselogo.png')"></div>
             <div class="blog-content">
                 <span class="blog-date">Jan 15, 2026</span>
@@ -702,7 +798,7 @@ body.dark-theme .recent-tag {
                 <i class="fa-brands fa-whatsapp social-icon" style="color:#25d366"></i>
                 <span style="font-weight:bold">WhatsApp</span>
             </a>
-            <a href="mailto:jamalsamuel23@yahoo.com" class="social-item">
+            <a href="mailto:wiseandhealthyliving@yahoo.com" class="social-item">
                 <i class="fa-solid fa-envelope social-icon" style="color:var(--honey)"></i>
                 <span style="font-weight:bold">Email Us</span>
             </a>
