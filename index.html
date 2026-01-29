@@ -262,8 +262,12 @@ body.dark-theme .blog-content h3 { color: var(--honey); }
 .fa-envelope { color: var(--honey); }*/
 
 @media (max-width: 480px) {
-    .social-contact-grid { grid-template-columns: 1fr; } /* Stack on mobile */
+    .social-contact-grid { 
+        flex-direction: column; /* This stacks them properly */
+        align-items: center;
+    }
 }
+
         /* Source Link Boxes */
         .source-link { background: var(--soft-gray); padding: 12px; border-radius: 8px; margin-top: 15px; font-size: 0.8rem; border: 1px solid rgba(0,0,0,0.05); }
         .source-link a { color: var(--mid-green); text-decoration: underline; font-weight: bold; display: block; margin-top: 4px; }
