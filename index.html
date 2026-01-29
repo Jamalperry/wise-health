@@ -793,12 +793,10 @@ body.dark-theme .recent-tag {
     <p style="font-size: 0.85rem; opacity: 0.8;"><i class="fa-regular fa-calendar-check"></i> Research Last Verified: <span id="lastUpdated"></span></p>
     <p>&copy; 2026 Wise & Healthy Living | Natural Wisdom</p>
 </footer>
-
 <button id="backToTop" onclick="scrollToTop()"><i class="fa-solid fa-arrow-up"></i></button>
 <a href="https://wa.me/17587235872" class="whatsapp-float" target="_blank" aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
     <i class="fa-brands fa-whatsapp"></i>
 </a>
-
 <script>
     function toggleTheme() {
         document.body.classList.toggle('dark-theme');
@@ -996,10 +994,9 @@ function displayHistory() {
 
 // Run a search when clicking a tag
 function quickSearch(term) {
-    const searchInput = document.getElementById('remedySearchInput'); // Ensure this matches your search ID
+    const searchInput = document.getElementById('remedySearch'); // Updated ID
     searchInput.value = term;
-    // Trigger your existing search function
-    if (typeof filterRemedies === "function") filterRemedies(); 
+    filterCards(); // Call your existing filter function
 }
 
 function clearHistory() {
