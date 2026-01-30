@@ -259,19 +259,46 @@ body.dark-theme .blog-search-wrapper {
   margin-bottom: 2rem;
   letter-spacing: 0.6px;
 }
+/* 🌿 Herbal Journal Theme */
+.journal-theme {
+  background: linear-gradient(
+      rgba(28, 61, 46, 0.92),
+      rgba(28, 61, 46, 0.92)
+    ),
+    url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+  color: #f4f1ea;
+  padding: 3.5rem 1.5rem;
+  font-family: "Georgia", "Garamond", serif;
+}
 
+.references {
+  max-width: 900px;
+  margin: 0 auto 2.5rem;
+}
+
+.references h3 {
+  text-align: center;
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+  letter-spacing: 1px;
+  color: #e6d7a3;
+}
+
+/* Accordion Styling */
 .accordion details {
-  background: transparent;
-  border-radius: 8px;
-  margin-bottom: 0.75rem;
-  padding: 0.75rem 1rem;
+  background: rgba(255, 248, 235, 0.06);
+  border: 1px solid rgba(230, 215, 163, 0.25);
+  border-radius: 10px;
+  margin-bottom: 1.1rem;
+  padding: 1rem 1.25rem;
 }
 
 .accordion summary {
   cursor: pointer;
-  font-weight: 500;
-  font-size: 0.85 rem;
+  font-weight: 600;
+  font-size: 1.05rem;
   list-style: none;
+  color: #f0e2b6;
 }
 
 .accordion summary::marker {
@@ -279,13 +306,13 @@ body.dark-theme .blog-search-wrapper {
 }
 
 .accordion summary::after {
-  content: "＋";
+  content: "⌄";
   float: right;
-  font-weight: bold;
+  color: #e6d7a3;
 }
 
 .accordion details[open] summary::after {
-  content: "−";
+  content: "⌃";
 }
 
 .accordion ol {
@@ -294,24 +321,60 @@ body.dark-theme .blog-search-wrapper {
 }
 
 .accordion li {
-  margin-bottom: 0.75rem;
-  line-height: 1.6;
+  margin-bottom: 0.9rem;
+  line-height: 1.65;
 }
 
+/* Links */
 .accordion a {
-  color: #cdebd6;
+  color: #e6d7a3;
   font-weight: 500;
-  text-decoration: underline;
+  margin-left: 0.4rem;
 }
 
 .accordion a:hover {
   color: #ffffff;
 }
 
+/* 🧠 Tooltip */
+.tooltip {
+  position: relative;
+  cursor: help;
+  font-size: 0.85rem;
+  margin: 0 0.35rem;
+  color: #e6d7a3;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  opacity: 0;
+  width: 260px;
+  background: #2f4f3e;
+  color: #f4f1ea;
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 10;
+  bottom: 140%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  border: 1px solid rgba(230, 215, 163, 0.4);
+}
+
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Footer Text */
 copyright {
   text-align: center;
   font-size: 0.9rem;
   opacity: 0.85;
+  color: #e6d7a3;
 }
 
         /* Sidebar Widgets */
@@ -548,112 +611,117 @@ copyright {
         </div>
     </aside>
 </div>
-<footer class="site-footer">
+
+    <footer class="site-footer journal-theme">
   <section class="references">
     <h3>Scientific References</h3>
 
     <div class="accordion">
 
-      <!-- Metabolism & Hydration -->
       <details open>
         <summary>Metabolism & Hydration</summary>
         <ol>
           <li>
             Boschmann, M., et al. (2003). Water-induced thermogenesis.
             <em>The Journal of Clinical Endocrinology & Metabolism</em>.
-            <a href="https://pubmed.ncbi.nlm.nih.gov/14671205/" target="_blank" rel="noopener">View Study</a>
+
+            <span class="tooltip">
+              ⓘ
+              <span class="tooltip-text">
+                Demonstrates how water intake can temporarily increase metabolic rate, supporting hydration-based wellness practices.
+              </span>
+            </span>
+
+            <a href="https://pubmed.ncbi.nlm.nih.gov/14671205/" target="_blank" rel="noopener">
+              View Study
+            </a>
           </li>
         </ol>
       </details>
 
-      <!-- Anti-inflammatory & Antioxidants -->
       <details>
-        <summary>Anti-Inflammatory & Antioxidant Research</summary>
+        <summary>Anti-Inflammatory & Antioxidants</summary>
         <ol>
           <li>
-            Mashhadi, N. S., et al. (2013). Anti-oxidative and anti-inflammatory effects of ginger.
+            Mashhadi, N. S., et al. (2013). Anti-inflammatory effects of ginger.
             <em>International Journal of Preventive Medicine</em>.
-            <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3665023/" target="_blank" rel="noopener">View Study</a>
+
+            <span class="tooltip">
+              ⓘ
+              <span class="tooltip-text">
+                Supports traditional ginger use for inflammation, pain reduction, and immune balance.
+              </span>
+            </span>
+
+            <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3665023/" target="_blank" rel="noopener">
+              View Study
+            </a>
           </li>
+
           <li>
-            Lobo, V., et al. (2010). Free radicals, antioxidants and functional foods.
+            Lobo, V., et al. (2010). Free radicals and antioxidants.
             <em>Pharmacognosy Reviews</em>.
-            <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3249911/" target="_blank" rel="noopener">View Study</a>
+
+            <span class="tooltip">
+              ⓘ
+              <span class="tooltip-text">
+                Explains how antioxidants protect cells from oxidative stress, reinforcing whole-food and herbal nutrition.
+              </span>
+            </span>
+
+            <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3249911/" target="_blank" rel="noopener">
+              View Study
+            </a>
           </li>
         </ol>
       </details>
 
-      <!-- Breath & Nervous System -->
       <details>
-        <summary>Breathing, Stress & Nervous System</summary>
+        <summary>Breathing & Nervous System</summary>
         <ol>
           <li>
-            Zaccaro, A., et al. (2018). Breath-control and psycho-physiological health.
+            Zaccaro, A., et al. (2018). Breath-control and nervous system regulation.
             <em>Frontiers in Human Neuroscience</em>.
-            <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6137615/" target="_blank" rel="noopener">View Study</a>
+
+            <span class="tooltip">
+              ⓘ
+              <span class="tooltip-text">
+                Shows how slow, controlled breathing directly influences stress response and emotional regulation.
+              </span>
+            </span>
+
+            <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6137615/" target="_blank" rel="noopener">
+              View Study
+            </a>
           </li>
         </ol>
       </details>
 
-      <!-- Adaptogens -->
       <details>
-        <summary>Adaptogens & Stress<br/> Resilience</summary>
+        <summary>Adaptogens & Stress Resilience</summary>
         <ol>
           <li>
-            Panossian, A., & Wikman, G. (2010). Effects of adaptogens on the CNS.
+            Panossian, A., & Wikman, G. (2010). Adaptogens and CNS support.
             <em>Pharmaceuticals</em>.
-            <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3991026/" target="_blank" rel="noopener">View Study</a>
-          </li>
-          <li>
-            Liao, L. Y., et al. (2018). Comparative bioactivity of adaptogens.
-            <em>Chinese Medicine</em>.
-            <a href="https://cmjournal.biomedcentral.com/articles/10.1186/s13020-018-0214-9" target="_blank" rel="noopener">View Study</a>
-          </li>
-        </ol>
-      </details>
 
-      <!-- Bioavailability -->
-      <details>
-        <summary>Nutrient Absorption & Bioavailability</summary>
-        <ol>
-          <li>
-            Currie, G. J. (2018). Bioavailability and therapeutic efficacy.
-            <em>Journal of Medical Radiation Sciences</em>.
-            <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6124116/" target="_blank" rel="noopener">View Study</a>
-          </li>
-        </ol>
-      </details>
+            <span class="tooltip">
+              ⓘ
+              <span class="tooltip-text">
+                Establishes adaptogens as regulators of stress response and nervous system balance.
+              </span>
+            </span>
 
-      <!-- Plant-Based Remedies -->
-      <details>
-        <summary>Plant-Based & <br/>Natural Remedies</summary>
-        <ol>
-          <li>
-            Clifford, T., et al. (2015). Red beetroot supplementation.
-            <em>Nutrients</em>.
-            <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4425174/" target="_blank" rel="noopener">View Study</a>
-          </li>
-          <li>
-            Wirngo, F. E., et al. (2016). Physiological effects of dandelion.
-            <em>Review of Diabetic Studies</em>.
-            <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5553762/" target="_blank" rel="noopener">View Study</a>
-          </li>
-          <li>
-            Vieira, C., et al. (2000). Ricinoleic acid and inflammation.
-            <em>Mediators of Inflammation</em>.
-            <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1781768/" target="_blank" rel="noopener">View Study</a>
-          </li>
-          <li>
-            Arslan, G. G., & Eşer, I. (2011). Castor oil packs and constipation.
-            <em>Complementary Therapies in Clinical Practice</em>.
-            <a href="https://pubmed.ncbi.nlm.nih.gov/21168117/" target="_blank" rel="noopener">View Study</a>
+            <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3991026/" target="_blank" rel="noopener">
+              View Study
+            </a>
           </li>
         </ol>
       </details>
 
     </div>
   </section>
-<div style="text-align: center; margin-top: 1rem;">
+
+<div style="text-align: center; margin-top: 2rem;">
 <div class="disclaimer-box">
         <strong>MEDICAL DISCLAIMER:</strong> This site does not provide medical advice. 
         <br>
@@ -663,9 +731,9 @@ copyright {
     <p style="font-size: 0.85rem; opacity: 0.8;"><i class="fa-regular fa-calendar-check"></i> Research Last Verified: <span id="lastUpdated"></span></p>
     
   <p class="copyright">
-    &copy; 2026 Wise &amp; Healthy Living | Wisdom Blog
+    © 2026 Wise &amp; Healthy Living | Wisdom Blog
   </p>
-  </div>
+</div>
 </footer>
 
 <script>
