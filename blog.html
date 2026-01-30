@@ -243,6 +243,77 @@ body.dark-theme .blog-search-wrapper {
     text-decoration: underline;
 }
 
+        .site-footer {
+  background-color: var(--dark-green);
+  color: #ffffff;
+  padding: 3rem 1.5rem;
+}
+
+.references {
+  max-width: 900px;
+  margin: 0 auto 2rem;
+}
+
+.references h3 {
+  text-align: center;
+  margin-bottom: 2rem;
+  letter-spacing: 0.6px;
+}
+
+.accordion details {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+}
+
+.accordion summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  list-style: none;
+}
+
+.accordion summary::marker {
+  display: none;
+}
+
+.accordion summary::after {
+  content: "＋";
+  float: right;
+  font-weight: bold;
+}
+
+.accordion details[open] summary::after {
+  content: "−";
+}
+
+.accordion ol {
+  margin-top: 1rem;
+  padding-left: 1.25rem;
+}
+
+.accordion li {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+}
+
+.accordion a {
+  color: #cdebd6;
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.accordion a:hover {
+  color: #ffffff;
+}
+
+copyright {
+  text-align: center;
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
         /* Sidebar Widgets */
         .sidebar { position: sticky; top: 120px; height: fit-content; }
         .widget {
@@ -477,46 +548,124 @@ body.dark-theme .blog-search-wrapper {
         </div>
     </aside>
 </div>
+<footer class="site-footer">
+  <section class="references">
+    <h3>Scientific References</h3>
 
-<footer style="background: var(--dark-green); color: white; text-align: center; padding: 40px;">
-    <footer class="post-references">
-    <h4>Scientific References</h4>
-    <ol>
-        <li>Boschmann, M., et al. (2003). Water-induced thermogenesis. <em>The Journal of Clinical Endocrinology & Metabolism</em>. <a href="https://pubmed.ncbi.nlm.nih.gov/14671205/" target="_blank">View Study</a></li>
-        <li>Mashhadi, N. S., et al. (2013). Anti-oxidative and anti-inflammatory effects of ginger in health and physical activity. <em>International Journal of Preventive Medicine</em>. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3665023/" target="_blank">View Study</a></li>
-        <li>Zaccaro, A., et al. (2018). How Breath-Control Can Change Your Life: A Systematic Review on Psycho-Physiological Correlates of Slow Breathing. <em>Frontiers in Human Neuroscience</em>. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6137615/" target="_blank">View Study</a></li>
-    </ol>
-</footer>
-<footer class="post-references">
-    <h4>Scientific References</h4>
-    <ol>
-        <li>Panossian, A., & Wikman, G. (2010). Effects of Adaptogens on the Central Nervous System. <em>Pharmaceuticals</em>. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3991026/" target="_blank">View Study</a></li>
-        <li>Liao, L. Y., et al. (2018). A preliminary review of studies on adaptogens: comparison of their bioactivity. <em>Chinese Medicine</em>. <a href="https://cmjournal.biomedcentral.com/articles/10.1186/s13020-018-0214-9" target="_blank">View Study</a></li>
-    </ol>
-</footer>
-<footer class="post-references">
-    <h4>Scientific References</h4>
-    <ol>
-        <li>Currie, G. J. (2018). Bioavailability: The Gateway to Therapeutic Efficacy. <em>Journal of Medical Radiation Sciences</em>. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6124116/" target="_blank">View Study</a></li>
-        <li>Lobo, V., et al. (2010). Free radicals, antioxidants and functional foods: Impact on human health. <em>Pharmacognosy Reviews</em>. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3249911/" target="_blank">View Study</a></li>
-    </ol>
-</footer>
-<footer class="post-references">
-    <h4>Scientific References</h4>
-    <ol>
-        <li>Clifford, T., et al. (2015). The potential benefits of red beetroot supplementation in health and disease. <em>Nutrients</em>. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4425174/" target="_blank">View Study</a></li>
-        <li>Wirngo, F. E., et al. (2016). The Physiological Effects of Dandelion (Taraxacum officinale). <em>Review of Diabetic Studies</em>. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5553762/" target="_blank">View Study</a></li>
-    </ol>
-</footer>
-<footer class="post-references">
-    <h4>Scientific References</h4>
-    <ol>
-        <li>Vieira, C., et al. (2000). Effect of ricinoleic acid in acute and subchronic experimental models of inflammation. <em>Mediators of Inflammation</em>. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1781768/" target="_blank">View Study</a></li>
-        <li>Arslan, G. G., & Eşer, I. (2011). An examination of the effect of castor oil packs on constipation. <em>Complementary Therapies in Clinical Practice</em>. <a href="https://pubmed.ncbi.nlm.nih.gov/21168117/" target="_blank">View Study</a></li>
-    </ol>
-</footer>
+    <div class="accordion">
 
-    <p>&copy; 2026 Wise & Healthy Living | Wisdom Blog</p>
+      <!-- Metabolism & Hydration -->
+      <details open>
+        <summary>Metabolism & Hydration</summary>
+        <ol>
+          <li>
+            Boschmann, M., et al. (2003). Water-induced thermogenesis.
+            <em>The Journal of Clinical Endocrinology & Metabolism</em>.
+            <a href="https://pubmed.ncbi.nlm.nih.gov/14671205/" target="_blank" rel="noopener">View Study</a>
+          </li>
+        </ol>
+      </details>
+
+      <!-- Anti-inflammatory & Antioxidants -->
+      <details>
+        <summary>Anti-Inflammatory & Antioxidant Research</summary>
+        <ol>
+          <li>
+            Mashhadi, N. S., et al. (2013). Anti-oxidative and anti-inflammatory effects of ginger.
+            <em>International Journal of Preventive Medicine</em>.
+            <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3665023/" target="_blank" rel="noopener">View Study</a>
+          </li>
+          <li>
+            Lobo, V., et al. (2010). Free radicals, antioxidants and functional foods.
+            <em>Pharmacognosy Reviews</em>.
+            <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3249911/" target="_blank" rel="noopener">View Study</a>
+          </li>
+        </ol>
+      </details>
+
+      <!-- Breath & Nervous System -->
+      <details>
+        <summary>Breathing, Stress & Nervous System</summary>
+        <ol>
+          <li>
+            Zaccaro, A., et al. (2018). Breath-control and psycho-physiological health.
+            <em>Frontiers in Human Neuroscience</em>.
+            <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6137615/" target="_blank" rel="noopener">View Study</a>
+          </li>
+        </ol>
+      </details>
+
+      <!-- Adaptogens -->
+      <details>
+        <summary>Adaptogens & Stress<br/> Resilience</summary>
+        <ol>
+          <li>
+            Panossian, A., & Wikman, G. (2010). Effects of adaptogens on the CNS.
+            <em>Pharmaceuticals</em>.
+            <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3991026/" target="_blank" rel="noopener">View Study</a>
+          </li>
+          <li>
+            Liao, L. Y., et al. (2018). Comparative bioactivity of adaptogens.
+            <em>Chinese Medicine</em>.
+            <a href="https://cmjournal.biomedcentral.com/articles/10.1186/s13020-018-0214-9" target="_blank" rel="noopener">View Study</a>
+          </li>
+        </ol>
+      </details>
+
+      <!-- Bioavailability -->
+      <details>
+        <summary>Nutrient Absorption & Bioavailability</summary>
+        <ol>
+          <li>
+            Currie, G. J. (2018). Bioavailability and therapeutic efficacy.
+            <em>Journal of Medical Radiation Sciences</em>.
+            <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6124116/" target="_blank" rel="noopener">View Study</a>
+          </li>
+        </ol>
+      </details>
+
+      <!-- Plant-Based Remedies -->
+      <details>
+        <summary>Plant-Based & <br/>Natural Remedies</summary>
+        <ol>
+          <li>
+            Clifford, T., et al. (2015). Red beetroot supplementation.
+            <em>Nutrients</em>.
+            <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4425174/" target="_blank" rel="noopener">View Study</a>
+          </li>
+          <li>
+            Wirngo, F. E., et al. (2016). Physiological effects of dandelion.
+            <em>Review of Diabetic Studies</em>.
+            <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5553762/" target="_blank" rel="noopener">View Study</a>
+          </li>
+          <li>
+            Vieira, C., et al. (2000). Ricinoleic acid and inflammation.
+            <em>Mediators of Inflammation</em>.
+            <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1781768/" target="_blank" rel="noopener">View Study</a>
+          </li>
+          <li>
+            Arslan, G. G., & Eşer, I. (2011). Castor oil packs and constipation.
+            <em>Complementary Therapies in Clinical Practice</em>.
+            <a href="https://pubmed.ncbi.nlm.nih.gov/21168117/" target="_blank" rel="noopener">View Study</a>
+          </li>
+        </ol>
+      </details>
+
+    </div>
+  </section>
+<div style="text-align: center;">
+<div class="disclaimer-box">
+        <strong>MEDICAL DISCLAIMER:</strong> This site does not provide medical advice. 
+        <br>
+        <a href="disclaimer.html" style="color: var(--honey); text-decoration: underline; margin-right: 15px;">Read Disclaimer</a>
+        <a href="privacy.html" style="color: var(--honey); text-decoration: underline;">Privacy Policy</a>
+    </div>
+    <p style="font-size: 0.85rem; opacity: 0.8;"><i class="fa-regular fa-calendar-check"></i> Research Last Verified: <span id="lastUpdated"></span></p>
+    
+  <p class="copyright">
+    &copy; 2026 Wise &amp; Healthy Living | Wisdom Blog
+  </p>
+  </div>
 </footer>
 
 <script>
