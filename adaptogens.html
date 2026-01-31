@@ -191,6 +191,48 @@
         </ul>
     </div>
 </article>
+<div style="background-color: #fdfcf0; border: 2px solid var(--honey); border-radius: 15px; padding: 30px; margin: 50px 0; font-family: sans-serif;">
+    <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+        <i class="fa-solid fa-mug-hot" style="font-size: 2rem; color: var(--honey);"></i>
+        <h3 style="margin: 0; color: var(--dark-green); font-size: 1.5rem;">The Deep Sleep Golden Latte</h3>
+    </div>
+    
+    <p style="font-size: 0.95rem; color: #555; margin-bottom: 20px;">
+        This evening ritual combines the cortisol-lowering power of <strong>Ashwagandha</strong> with the anti-inflammatory synergy of Turmeric and Black Pepper.
+    </p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div style="text-align: right; margin-bottom: -30px;">
+    <button onclick="printRecipe()" style="background: none; border: 1px solid var(--honey); color: var(--honey); padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size: 0.75rem;">
+        <i class="fa-solid fa-print"></i> Print Recipe
+    </button>
+</div>
+
+        <div>
+            <h4 style="color: var(--mid-green); margin-bottom: 10px; font-size: 0.9rem; text-transform: uppercase;">Ingredients</h4>
+            <ul style="font-size: 0.9rem; padding-left: 20px; line-height: 1.6;">
+                <li>1 cup Warm Oat or Almond milk</li>
+                <li>1/2 tsp Ashwagandha powder</li>
+                <li>1/2 tsp Turmeric powder</li>
+                <li>1 tsp Raw Honey (or Maple syrup)</li>
+                <li>Pinch of Black Pepper (for absorption)</li>
+            </ul>
+        </div>
+        <div>
+            <h4 style="color: var(--mid-green); margin-bottom: 10px; font-size: 0.9rem; text-transform: uppercase;">Instructions</h4>
+            <ol style="font-size: 0.9rem; padding-left: 20px; line-height: 1.6;">
+                <li>Heat milk gently (do not boil).</li>
+                <li>Whisk in herbs until smooth.</li>
+                <li>Add honey and black pepper.</li>
+                <li>Froth if desired and enjoy 30 mins before bed.</li>
+            </ol>
+        </div>
+    </div>
+    
+    <div style="margin-top: 20px; padding-top: 15px; border-top: 1px dashed var(--honey); font-size: 0.85rem; font-style: italic; color: #777; text-align: center;">
+        <i class="fa-solid fa-circle-info"></i> Synergy Tip: The healthy fats in the milk help the fat-soluble compounds in Turmeric reach your system.
+    </div>
+</div>
 
 <section class="related-remedies">
     <h3>Related Herbal Remedies</h3>
@@ -230,6 +272,34 @@
         document.body.classList.add('dark-theme');
         document.querySelector('.theme-toggle i').className = 'fa-solid fa-sun';
     }
+
+    function printRecipe() {
+    // Save the current page content
+    const originalContent = document.body.innerHTML;
+    
+    // Select only the recipe card content
+    // Note: Make sure your recipe card div has id="recipeCard"
+    const recipeContent = document.querySelector('[style*="background-color: #fdfcf0"]').outerHTML;
+
+    // Temporarily replace page content with just the recipe and print
+    document.body.innerHTML = `
+        <div style="padding: 40px; font-family: sans-serif;">
+            <h1 style="color: #1b4332;">Wise & Healthy Living</h1>
+            <hr>
+            ${recipeContent}
+            <p style="font-size: 10px; margin-top: 20px;">Source: Wise & Healthy Living | Understanding Adaptogens</p>
+        </div>
+    `;
+    
+    window.print();
+    
+    // Restore the original page
+    document.body.innerHTML = originalContent;
+    
+    // Re-initialize theme/scroll scripts if necessary
+    location.reload(); 
+}
+
 </script>
 
 </body>
