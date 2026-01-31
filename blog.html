@@ -739,54 +739,43 @@ copyright {
 </footer>
 
 <script>
-    function toggleTheme() {
-        document.body.classList.toggle('dark-theme');
-        localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
-    }
-
-    function updateProgressBar() {
-        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        document.getElementById("myBar").style.width = ((winScroll / height) * 100) + "%";
-    }
-
-    window.onscroll = () => updateProgressBar();
-
-    window.addEventListener('DOMContentLoaded', () => {
-        if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark-theme');
-    });
-
-    function searchBlog() {
-    const input = document.getElementById('blogSearchInput');
-    const filter = input.value.toLowerCase();
-    const posts = document.querySelectorAll('.post-preview');
-    const clearBtn = document.getElementById('blogClearBtn');
-
-    // Show/Hide clear button
-    clearBtn.style.display = input.value.length > 0 ? "block" : "none";
-
-    posts.forEach(post => {
-        // Search in Title, Tag, and Description
-        const title = post.querySelector('h2').innerText.toLowerCase();
-        const tag = post.querySelector('.tag').innerText.toLowerCase();
-        const snippet = post.querySelector('p').innerText.toLowerCase();
-        
-        if (title.includes(filter) || tag.includes(filter) || snippet.includes(filter)) {
-            post.style.display = "";
-        } else {
-            post.style.display = "none";
-        }
-    });
+// Theme Toggle Logic
+function toggleTheme() {
+    document.body.classList.toggle('dark-theme');
+    localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
 }
 
-function clearBlogSearch() {
-    document.getElementById('blogSearchInput').value = '';
-    searchBlog();
+// Progress Bar & Back to Top Toggle
+function handleScroll() {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    
+    // Progress Bar
+    document.getElementById("myBar").style.width = ((winScroll / height) * 100) + "%";
+
+    // Back to Top Button
+    const btn = document.getElementById("backToTop");
+    if (winScroll > 200) {
+        btn.style.display = "block";
+    } else {
+        btn.style.display = "none";
+    }
 }
 
-    //new
+window.onscroll = () => handleScroll();
 
-    function searchBlog() {
+// Initialize Theme and Read Times
+window.addEventListener('DOMContentLoaded', () => {
+    if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark-theme');
+    calculateReadTime();
+    
+    // Set Last Verified Date
+    const today = new Date();
+    document.getElementById('lastUpdated').innerText = today.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+});
+
+// Search Logic
+function searchBlog() {
     const input = document.getElementById('blogSearchInput');
     const filter = input.value.toLowerCase();
     const posts = document.querySelectorAll('.post-preview');
@@ -797,137 +786,68 @@ function clearBlogSearch() {
     clearBtn.style.display = input.value.length > 0 ? "block" : "none";
 
     posts.forEach(post => {
-        const title = post.querySelector('h2').innerText.toLowerCase();
-        const tag = post.querySelector('.tag').innerText.toLowerCase();
-        const snippet = post.querySelector('p').innerText.toLowerCase();
-        
-        if (title.includes(filter) || tag.includes(filter) || snippet.includes(filter)) {
+        const content = post.innerText.toLowerCase();
+        if (content.includes(filter)) {
             post.style.display = "";
             visibleCount++;
         } else {
             post.style.display = "none";
         }
     });
-
     noResults.style.display = (visibleCount === 0) ? "block" : "none";
 }
 
-    const form = document.getElementById('newsletterForm');
+function clearBlogSearch() {
+    document.getElementById('blogSearchInput').value = '';
+    searchBlog();
+}
+
+// Newsletter Form Logic
+const newsletterForm = document.getElementById('newsletterForm');
 const successMsg = document.getElementById('newsletterSuccess');
 
-form.addEventListener('submit', async function(e) {
-    e.preventDefault(); // Stop page refresh
-    
-    const emailInput = document.getElementById('subscriberEmail');
-    const formData = new FormData(form);
+if(newsletterForm) {
+    newsletterForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const btn = newsletterForm.querySelector('button');
+        const formData = new FormData(newsletterForm);
+        btn.innerText = "Sending Gift...";
+        btn.disabled = true;
 
-    // Show a "Processing" state on the button
-    const btn = form.querySelector('button');
-    const originalText = btn.innerText;
-    btn.innerText = "Joining...";
-    btn.disabled = true;
-
-    try {
-        const response = await fetch(form.action, {
-            method: 'POST',
-            body: formData,
-            headers: { 'Accept': 'application/json' }
-        });
-
-        if (response.ok) {
-            form.style.display = 'none'; // Hide the form
-            successMsg.style.display = 'block'; // Show success message
-        } else {
-            alert("Oops! There was a problem. Please try again.");
-            btn.innerText = originalText;
+        try {
+            const response = await fetch(newsletterForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            });
+            if (response.ok) {
+                newsletterForm.style.display = 'none';
+                successMsg.style.display = 'block';
+            } else { throw new Error(); }
+        } catch (error) {
+            alert("Error joining. Please try again.");
+            btn.innerText = "Subscribe";
             btn.disabled = false;
         }
-    } catch (error) {
-        alert("Network error. Please check your connection.");
-        btn.innerText = originalText;
-        btn.disabled = false;
-    }
-});
-
-    const form = document.getElementById('newsletterForm');
-const successMsg = document.getElementById('newsletterSuccess');
-
-form.addEventListener('submit', async function(e) {
-    e.preventDefault();
-    
-    const btn = form.querySelector('button');
-    const formData = new FormData(form);
-
-    btn.innerText = "Sending Gift...";
-    btn.disabled = true;
-
-    try {
-        const response = await fetch(form.action, {
-            method: 'POST',
-            body: formData,
-            headers: { 'Accept': 'application/json' }
-        });
-
-        if (response.ok) {
-            // Smoothly transition from form to gift
-            form.style.opacity = '0';
-            setTimeout(() => {
-                form.style.display = 'none';
-                successMsg.style.display = 'block';
-            }, 300);
-        } else {
-            throw new Error();
-        }
-    } catch (error) {
-        alert("Something went wrong. Please check your email and try again.");
-        btn.innerText = "Subscribe";
-        btn.disabled = false;
-    }
-});
-    function filterByCategory(catName) {
-    document.getElementById('blogSearchInput').value = catName;
-    searchBlog();
-    window.scrollTo({ top: 200, behavior: 'smooth' }); // Scrolls to search results
-        }
-
-    function calculateReadTime() {
-    const posts = document.querySelectorAll('.post-preview');
-    
-    posts.forEach(post => {
-        const text = post.querySelector('p').innerText;
-        const wpm = 200; // Average reading speed
-        const words = text.trim().split(/\s+/).length;
-        const time = Math.ceil(words / wpm);
-        
-        // Find the meta div and append/update the time
-        const meta = post.querySelector('.post-meta');
-        meta.innerHTML = meta.innerHTML.split('|')[0] + ` | <i class="fa-regular fa-clock"></i> ${time} min read`;
     });
 }
 
-// Run it when the page loads
-window.addEventListener('DOMContentLoaded', calculateReadTime);
-
-    // Show button when user scrolls down 200px
-window.onscroll = function() {
-    scrollFunction();
-    updateProgressBar(); // Keep your existing progress bar function here too
-};
-
-function scrollFunction() {
-    const btn = document.getElementById("backToTop");
-    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-        btn.style.display = "block";
-    } else {
-        btn.style.display = "none";
-    }
+function filterByCategory(catName) {
+    document.getElementById('blogSearchInput').value = catName;
+    searchBlog();
+    window.scrollTo({ top: 250, behavior: 'smooth' });
 }
 
-// Smooth scroll to top logic
 function scrollToTop() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function calculateReadTime() {
+    document.querySelectorAll('.post-preview').forEach(post => {
+        const text = post.innerText;
+        const time = Math.ceil(text.trim().split(/\s+/).length / 200);
+        const meta = post.querySelector('.post-meta');
+        if (meta) meta.innerHTML = meta.innerHTML.split('|')[0] + ` | <i class="fa-regular fa-clock"></i> ${time} min read`;
     });
 }
 
